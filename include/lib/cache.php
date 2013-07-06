@@ -470,18 +470,44 @@ class Cache {
 	 * 写入缓存
 	 */
 	function cacheWrite ($cacheData, $cacheName) {
+		if((ON_ACE)){
+	$mem = new Memcache();  //创建memcache对象，内部会访问agent获取地址及ID
+    $mem->init();
+   // echo $cacheName."  ";
+	$mem->set($cacheName, $cacheData, 0, 60);	
+	//$val = $mem->get($cacheName);
+	//echo $val;
+	$mem->close();
+		}else{
 		$cachefile = EMLOG_ROOT . '/content/cache/' . $cacheName . '.php';
 		$cacheData = "<?php exit;//" . $cacheData;
 		@ $fp = fopen($cachefile, 'wb') OR emMsg('读取缓存失败。如果您使用的是Unix/Linux主机，请修改缓存目录 (content/cache) 下所有文件的权限为777。如果您使用的是Windows主机，请联系管理员，将该目录下所有文件设为可写');
 		@ $fw = fwrite($fp, $cacheData) OR emMsg('写入缓存失败，缓存目录 (content/cache) 不可写');
 		$this->{$cacheName.'_cache'} = null;
 		fclose($fp);
+		}
 	}
 
 	/**
 	 * 读取缓存文件
 	 */
 	function readCache($cacheName) {
+		if((ON_ACE)){
+	$mem = new Memcache();  //创建memcache对象，内部会访问agent获取地址及ID
+    $mem->init();
+    $val = $mem->get($cacheName);
+    if(empty($val)){
+    	echo "reset";
+        if (method_exists($this, 'mc_' . $cacheName)) {
+					call_user_func(array($this, 'mc_' . $cacheName));
+					echo "ed ";
+		}
+		$val = $mem->get($cacheName);
+		if(empty($val))echo "xx ";
+    }
+	$mem->close();
+	return unserialize($val);
+		}else{
 		if ($this->{$cacheName.'_cache'} != null) {
 			return $this->{$cacheName.'_cache'};
 		} else {
@@ -499,5 +525,6 @@ class Cache {
 				return $this->{$cacheName.'_cache'};
 			}
 		}
+	}
 	}
 }
