@@ -474,7 +474,7 @@ class Cache {
 	$mem = new Memcache();  //创建memcache对象，内部会访问agent获取地址及ID
     $mem->init();
    // echo $cacheName."  ";
-	$mem->set($cacheName, $cacheData, 0, 60);	
+	$mem->set($cacheName, $cacheData);	
 	//$val = $mem->get($cacheName);
 	//echo $val;
 	$mem->close();

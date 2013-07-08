@@ -361,7 +361,10 @@ function findArray($array1, $array2) {
 }
 
 function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = false, $is_thumbnail = true) {
-	$result = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon, $is_thumbnail);
+	if(ON_ACE)
+	$result = upload_ace($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon, $is_thumbnail);
+	else
+		$result = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon, $is_thumbnail);
 	switch ($result) {
 		case '100':
 			emMsg('文件大小超过系统' . ini_get('upload_max_filesize') . '限制');
@@ -390,6 +393,9 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = 
 
 //用于附件批量上传
 function uploadFileBySwf($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = false, $is_thumbnail = true) {
+	if(ON_ACE)
+	$result = upload_ace($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon, $is_thumbnail);
+	else
 	$result = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon, $is_thumbnail);
 	switch ($result) {
 		case '100':
@@ -501,6 +507,70 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
 		}
 		@chmod($attachpath, 0777);
 	}
+	
+	// 如果附件是图片需要提取宽高
+	if (in_array($file_info['mime_type'], array('image/jpeg', 'image/png', 'image/gif', 'image/bmp'))) {
+		$size = getimagesize($file_info['file_path']);
+		if ($size) {
+			$file_info['width'] = $size[0];
+			$file_info['height'] = $size[1];
+		}
+	}
+	return $file_info;
+}
+
+function upload_ace($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = false, $is_thumbnail = true) {
+	if ($errorNum == 1) {
+		return '100'; //文件大小超过系统限制
+	} elseif ($errorNum > 1) {
+		return '101'; //上传文件失败
+	}
+	$extension = getFileSuffix($fileName);
+	if (!in_array($extension, $type)) {
+		return '102'; //错误的文件类型
+	}
+	if ($fileSize > Option::UPLOADFILE_MAXSIZE) {
+		return '103'; //文件大小超出emlog的限制
+	}
+	$file_info = array();
+	$file_info['file_name'] = $fileName;
+	$file_info['mime_type'] = get_mimetype($extension);
+	$file_info['size'] = $fileSize;
+	$file_info['width'] = 0;
+	$file_info['height'] = 0;
+	//$uppath = Option::UPLOADFILE_PATH . gmdate('Ym') . '/';
+	//$fname = substr(md5($fileName), 0, 4) . time() . '.' . $extension;
+	//$attachpath = $uppath . $fname;
+	$storage = new CEStorage(); 
+ //if(file_exists("test.jpg"))
+ 	$attachpath = $storage->upload($fileName, $fileName);  
+ 	// $file_url will be XXX.aliapp.com/aliyun_ce_storage/title.jpg  }
+	$file_info['file_path'] = $attachpath;
+	
+ //$file_lists = $storage->getList();
+	// 生成缩略图
+	$thum = $attachpath.'-thum'; //$uppath . 'thum-' . $fname;
+	if ($is_thumbnail) {
+		if ($isIcon && resizeImage($tmpFile, $thum, Option::ICON_MAX_W, Option::ICON_MAX_H)) {
+			$file_info['thum_file'] = $thum;
+			$file_info['thum_size'] = filesize($thum);
+			$size = getimagesize($thum);
+			if ($size) {
+				$file_info['thum_width'] = $size[0];
+				$file_info['thum_height'] = $size[1];
+			}
+			resizeImage($tmpFile, $uppath . 'thum52-' . $fname, 52, 52);
+		} elseif (resizeImage($tmpFile, $thum, Option::IMG_MAX_W, Option::IMG_MAX_H)) {
+			$file_info['thum_file'] = $thum;
+			$file_info['thum_size'] = filesize($thum);
+			$size = getimagesize($thum);
+			if ($size) {
+				$file_info['thum_width'] = $size[0];
+				$file_info['thum_height'] = $size[1];
+			}
+		}
+	}
+
 	
 	// 如果附件是图片需要提取宽高
 	if (in_array($file_info['mime_type'], array('image/jpeg', 'image/png', 'image/gif', 'image/bmp'))) {
