@@ -541,15 +541,11 @@ function upload_ace($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = 
 	//$uppath = Option::UPLOADFILE_PATH . gmdate('Ym') . '/';
 	//$fname = substr(md5($fileName), 0, 4) . time() . '.' . $extension;
 	//$attachpath = $uppath . $fname;
-	$storage = new CEStorage(); 
- //if(file_exists("test.jpg"))
- 	$attachpath = $storage->upload($fileName, $fileName);  
- 	// $file_url will be XXX.aliapp.com/aliyun_ce_storage/title.jpg  }
-	$file_info['file_path'] = $attachpath;
+
 	
  //$file_lists = $storage->getList();
 	// 生成缩略图
-	$thum = $attachpath.'-thum'; //$uppath . 'thum-' . $fname;
+	$thum = $fname.'-thum'; //$uppath . 'thum-' . $fname;
 	if ($is_thumbnail) {
 		if ($isIcon && resizeImage($tmpFile, $thum, Option::ICON_MAX_W, Option::ICON_MAX_H)) {
 			$file_info['thum_file'] = $thum;
@@ -570,7 +566,12 @@ function upload_ace($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = 
 			}
 		}
 	}
+	$storage = new CEStorage(); 
+ //if(file_exists("test.jpg"))
+ 	$attachpath = $storage->upload($tmpFile, $fileName);  
+ 	// $file_url will be XXX.aliapp.com/aliyun_ce_storage/title.jpg  }
 
+ 	$file_info['file_path'] = "/".$attachpath;
 	
 	// 如果附件是图片需要提取宽高
 	if (in_array($file_info['mime_type'], array('image/jpeg', 'image/png', 'image/gif', 'image/bmp'))) {
