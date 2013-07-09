@@ -35,7 +35,10 @@ foreach($attach as $key=>$value):
 		$embedlink = "<a href=\"javascript: parent.addattach_file('$atturl', '{$value['filename']}', {$value['aid']});\">插入 </a>";
 	} elseif (in_array($extension, array('gif', 'jpg', 'jpeg', 'png', 'bmp'))) {
 		$imgpath = $value['filepath'];
+		if(!strstr($imgpath,"aliyun_ce_storage"))
 		$ed_imgpath = BLOG_URL.substr($imgpath,3);
+		else 
+		$ed_imgpath=$imgpath;
 		$embedlink = "<a href=\"javascript: parent.addattach_img('$atturl', '$ed_imgpath',{$value['aid']}, '{$value['width']}', '{$value['height']}', '{$value['filename']}');\" title=\"插入原图\">原图</a>";
 		if (isset($value['thum_filepath'])) {
 			$thum_url = BLOG_URL.substr($value['thum_filepath'], 3);

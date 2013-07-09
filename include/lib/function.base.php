@@ -575,12 +575,13 @@ function upload_ace($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = 
 	
 	// 如果附件是图片需要提取宽高
 	if (in_array($file_info['mime_type'], array('image/jpeg', 'image/png', 'image/gif', 'image/bmp'))) {
-		$size = getimagesize($file_info['file_path']);
+		$size = getimagesize($tmpFile);
 		if ($size) {
 			$file_info['width'] = $size[0];
 			$file_info['height'] = $size[1];
 		}
 	}
+	print_r($file_info);
 	return $file_info;
 }
 
