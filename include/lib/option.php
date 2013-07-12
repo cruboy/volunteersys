@@ -123,13 +123,13 @@ class Option {
 				'method' => 'loadPluginShow',
 				'reg_0' => '|^.*/\?(plugin)=([\w\-]+).*([\?&].*)?$|',
 				),
+		//	array(
+		//		'model' => 'Log_Controller',
+		//		'method' => 'displayContent',
+		//		'reg_0' => '|^.*?/([^/\.=\?]+)(\.html)?(/(comment-page)-(\d+))?/?([\?&].*)?$|',
+		//		),
 			array(
-				'model' => 'Log_Controller',
-				'method' => 'displayContent',
-				'reg_0' => '|^.*?/([^/\.=\?]+)(\.html)?(/(comment-page)-(\d+))?/?([\?&].*)?$|',
-				),
-			array(
-				'model' => 'Log_Controller',
+				'model' => 'home_Controller',
 				'method' => 'display',
 				'reg_0' => '|^/?([\?&].*)?$|',
 				),

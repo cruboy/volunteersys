@@ -33,7 +33,7 @@ define('TPLS_PATH', EMLOG_ROOT.'/content/templates/');
 //解决前台多域名ajax跨域
 define('DYNAMIC_BLOGURL', getBlogUrl());
 //前台模板URL
-define('TEMPLATE_URL', 	TPLS_URL.Option::get('nonce_templet').'/');
+define('TEMPLATE_URL', 	TPLS_URL);
 
 $active_plugins = Option::get('active_plugins');
 $emHooks = array();
