@@ -119,15 +119,15 @@ class Option {
 				'reg_0' => '|^.*/\?(action)=(addcom)([\?&].*)?$|',
 				),
 			array(
-				'model' => 'Plugin_Controller',
-				'method' => 'loadPluginShow',
-				'reg_0' => '|^.*/\?(plugin)=([\w\-]+).*([\?&].*)?$|',
+				'model' => 'Register_Controller',
+				'method' => 'getForm',
+				'reg_0' => '|^.*/\?(joinvolunteer)|',
 				),
-		//	array(
-		//		'model' => 'Log_Controller',
-		//		'method' => 'displayContent',
-		//		'reg_0' => '|^.*?/([^/\.=\?]+)(\.html)?(/(comment-page)-(\d+))?/?([\?&].*)?$|',
-		//		),
+			array(
+				'model' => 'Log_Controller',
+				'method' => 'displayContent',
+				'reg_0' => '|^.*?/([^/\.=\?]+)(\.html)?(/(comment-page)-(\d+))?/?([\?&].*)?$|',
+				),
 			array(
 				'model' => 'home_Controller',
 				'method' => 'display',
