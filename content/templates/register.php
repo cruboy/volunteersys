@@ -19,92 +19,18 @@ TD {
 
 <SCRIPT type=text/javascript src="content/templates/images/jquery.js"></SCRIPT>
 
-<SCRIPT type=text/javascript 
-src="content/templates/images/jQuery.FillOptions.js"></SCRIPT>
-
 <SCRIPT type=text/javascript>
         $(document).ready(function () {
             $(":text,:file,:password,select").attr('class', 'input02');
-            $("#_quxian").html(unescape($("#HiddenField11").val()));
-            $("#_jiedao").html(unescape($("#HiddenField13").val()));
-            $("#_shequ").html(unescape($("#HiddenField12").val()));
+
             $("#_xiehui_shi").html(unescape($("#_xiehui_shi_v").val()));
             $("#_xiehui_qu").html(unescape($("#_xiehui_qu_v").val()));
             $("#_xiehui_jie").html(unescape($("#_xiehui_jie_v").val()));
             $("#_xiehui_shequ").html(unescape($("#_xiehui_shequ_v").val()));
-            $("#_chengshi").CascadingSelect($("#_quxian"), "CountyHandler.ashx", { datatype: "json", textfield: "text", valuefiled: "value", parameter: "c" }, function () {
-                $("#_quxian").AddOption("请选择", "-2", true, 0);
-                $("#_jiedao").html("");
-                $("#_jiedao").AddOption("请选择", "-2", true, 0);
-                $("#_shequ").html("");
-                $("#_shequ").AddOption("请选择", "-2", true, 0);
-                var val = $("#_chengshi").val();
-                $("#_xiehui_shi").html("");
-                $("#_xiehui_shi_v").val("");
-                $("#_xiehui_qu").html("");
-                $("#_xiehui_qu_v").val("");
-                $("#_xiehui_jie").html("");
-                $("#_xiehui_jie_v").val("");
-                $("#_xiehui_shequ").html("");
-                $("#_xiehui_shequ_v").val("");
-                if (val > -1) {
-                    var qval;
-                    $.getJSON("Xiehui_shiHandler.ashx?c=" + val, function (json) { qval = json; });
-                    $.each(qval, function (i, n) {
-                        $("#_xiehui_shi").append("<span><input id=\"_xiehui_shi_" + i + "\" type=\"checkbox\" name=\"_xiehui_qu\" value=\"" + n.id + "\"/>" + n.name + "&nbsp;&nbsp;</span>" + (i % 9 == 0 && i != 0 ? "<br>" : ""));
-                    });
-                }
-            });
-            $("#_quxian").CascadingSelect($("#_jiedao"), "StreetHandler.ashx", { datatype: "json", textfield: "text", valuefiled: "value", parameter: "c" }, function () {
-                $("#_jiedao").AddOption("请选择", "-2", true, 0);
-                $("#_shequ").html("");
-                $("#_shequ").AddOption("请选择", "-2", true, 0);
-                var val = $("#_quxian").val();
-                $("#_xiehui_qu").html("");
-                $("#_xiehui_qu_v").val("");
-                $("#_xiehui_jie").html("");
-                $("#_xiehui_jie_v").val("");
-                $("#_xiehui_shequ").html("");
-                $("#_xiehui_shequ_v").val("");
-                if (val > -1) {
-                    var qval;
-                    $.getJSON("Xiehui_quHandler.ashx?c=" + val, function (json) { qval = json; });
-                    $.each(qval, function (i, n) {
-                        $("#_xiehui_qu").append("<span><input id=\"_xiehui_qu_" + i + "\" type=\"checkbox\" name=\"_xiehui_qu\" value=\"" + n.id + "\"/>" + n.name + "&nbsp;&nbsp;</span>" + (i % 9 == 0 && i != 0 ? "<br>" : ""));
-                    });
-                }
-            });
-            $("#_jiedao").CascadingSelect($("#_shequ"), "CommunityHandler.ashx", { datatype: "json", textfield: "text", valuefiled: "value", parameter: "c" }, function () {
-                $("#_shequ").AddOption("请选择", "-2", true, 0);
-                var val = $("#_jiedao").val();
-                $("#_xiehui_jie").html("");
-                $("#_xiehui_jie_v").val("");
-                $("#_xiehui_shequ").html("");
-                $("#_xiehui_shequ_v").val("");
-                if (val > -1) {
-                    var qval;
-                    $.getJSON("Xiehui_jieHandler.ashx?c=" + val, function (json) { qval = json; });
-                    $.each(qval, function (i, n) {
-                        $("#_xiehui_jie").append("<span><input id=\"_xiehui_jie_" + i + "\" type=\"checkbox\" name=\"_xiehui_jie\" value=\"" + n.id + "\"/>" + n.name + "&nbsp;&nbsp;</span>" + (i % 9 == 0 && i != 0 ? "<br>" : ""));
-                    });
-                }
-            });
-            $("#_shequ").change(function () {
-                var val = $("#_shequ").val();
-                $("#_xiehui_shequ").html("");
-                $("#_xiehui_shequ_v").val("");
-                if (val > -1) {
-                    var qval;
-                    $.getJSON("Xiehui_shequHandler.ashx?c=" + val, function (json) { qval = json; });
-                    $.each(qval, function (i, n) {
-                        $("#_xiehui_shequ").append("<span><input id=\"_xiehui_shequ_" + i + "\" type=\"checkbox\" name=\"_xiehui_shequ\" value=\"" + n.id + "\"/>" + n.name + "&nbsp;&nbsp;</span>" + (i % 9 == 0 && i != 0 ? "<br>" : ""));
-                    });
-                }
-            });
+           
+
             document.getElementById('_upload').onclick = function () {
-                $("#HiddenField11").val(escape($("#_quxian").html()));
-                $("#HiddenField12").val(escape($("#_shequ").html()));
-                $("#HiddenField13").val(escape($("#_jiedao").html()));
+              //  $("#HiddenField11").val(escape($("#_quxian").html()));
                 $("#_xiehui_shi_v").val(escape($("#_xiehui_shi").html()));
                 $("#_xiehui_qu_v").val(escape($("#_xiehui_qu").html()));
                 $("#_xiehui_jie_v").val(escape($("#_xiehui_jie").html()));
@@ -129,23 +55,7 @@ src="content/templates/images/jQuery.FillOptions.js"></SCRIPT>
             };
             document.getElementById('_reset').onclick = function () {
                 document.forms['form1'].reset();
-                $("#_quxian").html("");
-                $("#_quxian").AddOption("请选择", "-2", true, 0);
-                $("#HiddenField11").val(escape($("#_quxian").html()));
-                $("#_jiedao").html("");
-                $("#_jiedao").AddOption("请选择", "-2", true, 0);
-                $("#HiddenField13").val(escape($("#_jiedao").html()));  
-                $("#_shequ").html("");
-                $("#_shequ").AddOption("请选择", "-2", true, 0);
-                $("#HiddenField12").val(escape($("#_shequ").html()));
-                $("#_xiehui_shi").html("");
-                $("#_xiehui_shi_v").val("");
-                $("#_xiehui_qu").html("");
-                $("#_xiehui_qu_v").val("");
-                $("#_xiehui_jie").html("");
-                $("#_xiehui_jie_v").val("");
-                $("#_xiehui_shequ").html("");
-                $("#_xiehui_shequ_v").val("");
+         
             };
         });
         function PhoneValidate(sender, args) { args.IsValid = ($("#_shouji").val().length > 0 || $("#_guhua").val().length > 0); }
@@ -265,10 +175,6 @@ function __doPostBack(eventTarget, eventArgument) {
 //]]>
 </SCRIPT>
 
-<SCRIPT type=text/javascript src="content/templates/images/WebResource.axd"></SCRIPT>
-
-<SCRIPT type=text/javascript 
-src="content/templates/images/WebResource(1).axd"></SCRIPT>
 
 <SCRIPT type=text/javascript>
 //<![CDATA[
@@ -280,8 +186,7 @@ return true;
 </SCRIPT>
 
 <DIV><INPUT id=__EVENTVALIDATION 
-value=/wEWYAK63/iTBgLtkbTVBALOrdCWAwKwg8JYAq6N8/EEAq6Nu/EEAtG658cCAr6E/4oCAr+E/4oCApfqmIgGApvq1IsGAprq1IsGApnq1IsGApjq1IsGAuKToewOAq+oqtsBAtHDt5MEAtzD/5AEAt/D/5AEAt7D/5AEAtnD/5AEAtjD/5AEAtvD/5AEAsrD/5AEAsXD/5AEAt3Dv5MEAt3Ds5MEAt3Dt5MEAt3Dj5MEAt3Dg5MEAt3Dh5MEAt3Dm5MEAt3D35AEAt3D05AEAtzDv5MEAtzDs5MEAtzDj5MEAqyVtgECr5W2AQKulbYBAsP5gasMAs/5zagMAs75zagMAs35zagMAsz5zagMAsv5zagMAsr5zagMAtuU/IMKAt+Djr4GAtODwr0GAtKDwr0GAtGDwr0GAtCDwr0GAteDwr0GAtaDwr0GAtWDwr0GAsSDwr0GAsuDwr0GAsK9xckJArTFzLgOApKLpYsGApOLpYsGApCLpYsGAq2C8+YJAuW5s5QBAua5s5QBAue5s5QBAui5s5QBAuG5s5QBAuK5s5QBAuO5s5QBAuS5s5QBAu25s5QBAu65s5QBAua585QBAua595QBAua565QBAua575QBAua5g5UBAua5h5UBAua5+5QBAua5/5QBAuz23+0EAt6VufQDAp+O/u8KAo3r9eUCApeo8U8C/rPTkw4C9ezI1AsChqT42wUCwZGq8gEC0ZfYpQsCrNiXgA8C2+q7sQwCguTXuwkC79K49gQVcGMU1lp5aFUl21O88XownFfR9A== 
-type=hidden name=__EVENTVALIDATION> </DIV><INPUT id=_picID type=hidden 
+value=fqmIgGApvq1IsGAprq1IsGApnq1IsGApjq76frytAt7Dd754
 name=_picID> 
 
 <TABLE border=0 cellSpacing=0 cellPadding=0 align=center>
@@ -380,25 +285,21 @@ name=_picID>
                   type=text name=_zhiji></TD></TR>
               <TR>
                 <TD bgColor=#f7f7f7 height=35 align=right>所在地区：</TD>
-                <TD bgColor=#f7f7f7 colSpan=5><SELECT style="WIDTH: 106px" 
-                  id=_chengshi name=_chengshi> <OPTION selected 
-                    value=-2>请选择</OPTION> 
-                    <OPTION value=2>山东</OPTION> 
-                    <OPTION value=3>四川</OPTION> 
-             </SELECT> <SPAN 
-                  style="DISPLAY: none; COLOR: red" 
-                  id=CustomValidator3></SPAN><SPAN style="COLOR: red">*</SPAN> 
-                  &nbsp;区/县/市：<SELECT style="WIDTH: 108px" id=_quxian 
-                  name=_quxian></SELECT> <INPUT id=HiddenField11 
-                  value=%3Coption%20value%3D%22-2%22%3E%u8BF7%u9009%u62E9%3C/option%3E 
-                  type=hidden name=HiddenField11> <INPUT id=HiddenField12 
-                  type=hidden name=HiddenField12> <INPUT id=HiddenField13 
-                  value=%3Coption%20value%3D%22-2%22%3E%u8BF7%u9009%u62E9%3C/option%3E 
-                  type=hidden name=HiddenField13> <SPAN 
-                  style="COLOR: red">*</SPAN>&nbsp; 街道：<SELECT 
-                  style="WIDTH: 108px" id=_jiedao name=_jiedao></SELECT> <SPAN 
-                  style="COLOR: red">*</SPAN> &nbsp;<BR>社区：<SELECT id=_shequ 
-                  name=_shequ></SELECT> <SPAN style="COLOR: red">*</SPAN></TD></TR>
+                <TD bgColor=#f7f7f7 colSpan=5>
+                       <select name="zone">
+                            <option value="0">请选择</option>
+                            <?php foreach($zones as $z) { ?>
+<option <?php if($z['zone_id'] == $zone) { ?>selected="selected"<?php } ?> value="<?php echo $z['zone_id'];?>"><?php echo $z['name'];?></option>
+                            <?php } ?>
+                        </select> 省
+                        <select name="city">
+                            <option value="0">请选择</option>
+                        </select> 市
+                        <select name="district">
+                            <option value="0">请选择</option>
+                        </select> 区 
+                        <SPAN style="COLOR: red">*</SPAN>
+                        </TD></TR>
               <TR>
                 <TD height=35 align=right>社会职业：</TD>
                 <TD><SELECT style="WIDTH: 106px" id=_shenfen name=_shenfen> 
@@ -567,71 +468,72 @@ name=_picID>
             onclick='return Check();WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions("_submit", "", true, "", "", false, false))' 
             src="content/templates/images/register_28.png" type=image name=_submit></TD>
           <TD width=80>&nbsp;</TD>
-          <TD><A id=_reset href="http://zy.dbw.cn/web/register.shtml#"><IMG 
+          <TD><A id=_reset href="?register"><IMG 
             alt="" src="content/templates/images/register_30.png" width=109 
-            height=35></A></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+            height=35></A></TD>
+            </TR>
+            </TBODY></TABLE>
+            </TD></TR>
+            </TBODY></TABLE>
+
 
 <SCRIPT type=text/javascript>
 //<![CDATA[
-var Page_Validators =  new Array(document.getElementById("RequiredFieldValidator3"), document.getElementById("RequiredFieldValidator4"), document.getElementById("RequiredFieldValidator5"), document.getElementById("CompareValidator1"), document.getElementById("RequiredFieldValidator1"), document.getElementById("CustomValidator3"), document.getElementById("RequiredFieldValidator2"), document.getElementById("CustomValidator1"));
-//]]>
-</SCRIPT>
+$(function() {
+	var city = '<?php echo $city;?>';
+    if($("select[name='zone']").val() > 0) 
+        {
+         url = "?register/getCity";
+        var cities = '<option value="0">请选择</option>';
+        $.post(url,{zoneId:$("select[name='zone']").val()},function(data) {
+            var obj = eval(data);
+            for(var i = 0;i<obj.length;i++) {
+                if(city == obj[i].city_id) cities += '<option selected="selected" value="'+obj[i].city_id+'">'+obj[i].name+'</option>';
+                else cities += '<option value="'+obj[i].city_id+'">'+obj[i].name+'</option>';
+            }
+            $("select[name='city']").html(cities);
+        });
+    }
 
-<SCRIPT type=text/javascript>
-//<![CDATA[
-var RequiredFieldValidator3 = document.all ? document.all["RequiredFieldValidator3"] : document.getElementById("RequiredFieldValidator3");
-RequiredFieldValidator3.controltovalidate = "_nickName";
-RequiredFieldValidator3.focusOnError = "t";
-RequiredFieldValidator3.display = "None";
-RequiredFieldValidator3.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
-RequiredFieldValidator3.initialvalue = "";
-var RequiredFieldValidator4 = document.all ? document.all["RequiredFieldValidator4"] : document.getElementById("RequiredFieldValidator4");
-RequiredFieldValidator4.controltovalidate = "_password";
-RequiredFieldValidator4.focusOnError = "t";
-RequiredFieldValidator4.display = "None";
-RequiredFieldValidator4.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
-RequiredFieldValidator4.initialvalue = "";
-var RequiredFieldValidator5 = document.all ? document.all["RequiredFieldValidator5"] : document.getElementById("RequiredFieldValidator5");
-RequiredFieldValidator5.controltovalidate = "_password2";
-RequiredFieldValidator5.focusOnError = "t";
-RequiredFieldValidator5.display = "None";
-RequiredFieldValidator5.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
-RequiredFieldValidator5.initialvalue = "";
-var CompareValidator1 = document.all ? document.all["CompareValidator1"] : document.getElementById("CompareValidator1");
-CompareValidator1.controltovalidate = "_password2";
-CompareValidator1.focusOnError = "t";
-CompareValidator1.display = "None";
-CompareValidator1.evaluationfunction = "CompareValidatorEvaluateIsValid";
-CompareValidator1.controltocompare = "_password";
-CompareValidator1.controlhookup = "_password";
-var RequiredFieldValidator1 = document.all ? document.all["RequiredFieldValidator1"] : document.getElementById("RequiredFieldValidator1");
-RequiredFieldValidator1.controltovalidate = "_xingming";
-RequiredFieldValidator1.focusOnError = "t";
-RequiredFieldValidator1.display = "None";
-RequiredFieldValidator1.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
-RequiredFieldValidator1.initialvalue = "";
-var CustomValidator3 = document.all ? document.all["CustomValidator3"] : document.getElementById("CustomValidator3");
-CustomValidator3.controltovalidate = "_chengshi";
-CustomValidator3.focusOnError = "t";
-CustomValidator3.display = "None";
-CustomValidator3.evaluationfunction = "CustomValidatorEvaluateIsValid";
-CustomValidator3.clientvalidationfunction = "AreaValidate";
-var RequiredFieldValidator2 = document.all ? document.all["RequiredFieldValidator2"] : document.getElementById("RequiredFieldValidator2");
-RequiredFieldValidator2.controltovalidate = "_shenfenzheng";
-RequiredFieldValidator2.focusOnError = "t";
-RequiredFieldValidator2.display = "None";
-RequiredFieldValidator2.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
-RequiredFieldValidator2.initialvalue = "";
-var CustomValidator1 = document.all ? document.all["CustomValidator1"] : document.getElementById("CustomValidator1");
-CustomValidator1.display = "None";
-CustomValidator1.evaluationfunction = "CustomValidatorEvaluateIsValid";
-CustomValidator1.clientvalidationfunction = "PhoneValidate";
-//]]>
-</SCRIPT>
+    $("select[name='zone']").change(function() {
+        url = "?register/getCity";
+        var cities = '<option value="0">请选择</option>';
+        $.post(url,{zoneId:$(this).val()},function(data) {
+        	//alert(data);
+            var obj = eval(data);
+            for(var i = 0;i<obj.length;i++) {
+                cities += '<option value="'+obj[i].city_id+'">'+obj[i].name+'</option>';
+            }
+            $("select[name='city']").html(cities);
+        });
+        $("select[name='district']").html("<option value='0'>请选择</option>");
+    });
+    var district = '<?php echo $district;?>';
+    if(city > 0) {
+        url = "?register/getDistrict";
+        var districts = '<option value="0">请选择</option>';
+        $.post(url,{cityId:city},function(data) {
+            var obj = eval(data);
+            for(var i = 0;i<obj.length;i++) {
+                if(district == obj[i].district_id)  districts += '<option selected="selected" value="'+obj[i].district_id+'">'+obj[i].name+'</option>';
+                else districts += '<option value="'+obj[i].district_id+'">'+obj[i].name+'</option>';
+            }
+            $("select[name='district']").html(districts);
+        });
+    }
 
-<SCRIPT type=text/javascript>
-//<![CDATA[
-
+    $("select[name='city']").change(function() {
+        url = "?register/getDistrict";
+        var districts = '<option value="0">请选择</option>';
+        $.post(url,{cityId:$(this).val()},function(data) {
+            var obj = eval(data);
+            for(var i = 0;i<obj.length;i++) {
+                districts += '<option value="'+obj[i].district_id+'">'+obj[i].name+'</option>';
+            }
+            $("select[name='district']").html(districts);
+        });
+    });
+})
 var Page_ValidationActive = false;
 if (typeof(ValidatorOnLoad) == "function") {
     ValidatorOnLoad();

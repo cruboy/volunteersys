@@ -1,6 +1,6 @@
 <?php 
 /**
- * 页面底部信息
+ * 页面底部信息<script>prettyPrint();</script>
  */
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
 ?>
@@ -12,6 +12,6 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	<?php doAction('index_footer'); ?>
 </div><!--end #footerbar-->
 </div><!--end #wrap-->
-<script>prettyPrint();</script>
+
 </body>
 </html>
