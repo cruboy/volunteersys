@@ -123,6 +123,11 @@ class Option {
 				'method' => 'getForm',
 				'reg_0' => '|^.*/\?(joinvolunteer)|',
 				),
+				array(
+				'model' => 'Register_Controller',
+				'method' => 'register',
+				'reg_0' => '|^.*/\?(register)|',
+				),
 			array(
 				'model' => 'Log_Controller',
 				'method' => 'displayContent',

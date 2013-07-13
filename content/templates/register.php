@@ -183,7 +183,10 @@ src="content/templates/images/jQuery.FillOptions.js"></SCRIPT>
         }
 
         function Check() {
-            if (!JCheck($("#_nickName")) || !JCheck($("#_password")) || !CheckLength() || !Comp($("#_password"), $("#_password2")) || !JCheck($("#_xingming")) || !JCheck($("#_shenfenzheng")) || (!JCheck($("#_guhua")) && !JCheck($("#_shouji"))))
+            if (!JCheck($("#_nickName")) || !JCheck($("#_password")) || 
+                    !CheckLength() || !Comp($("#_password"), $("#_password2")) 
+                    || !JCheck($("#_xingming")) || !JCheck($("#_shenfenzheng"))
+                     || (!JCheck($("#_guhua")) && !JCheck($("#_shouji"))))
                 return false;
             if ($("#_zhengzhimianmao option:selected").val() == "-1") {
                 $("#_zhengzhimianmao").focus();
@@ -197,9 +200,9 @@ src="content/templates/images/jQuery.FillOptions.js"></SCRIPT>
                 $("#_xueli").focus();
                 return false;
             }
-            if ($.ajax({
+         /*   if ($.ajax({
                 type: "GET",
-                url: "NicknameHandler.ashx",
+                url: "?register",
                 cache: false,
                 async: false,
                 data: "name=" + escape($.trim($('#_nickName').val()))
@@ -207,7 +210,7 @@ src="content/templates/images/jQuery.FillOptions.js"></SCRIPT>
                 alert('登录名已存在，请重新填写！');
                 $("#_nickName").focus();
                 return false;
-            };
+            };*/
             var quxian = $("#_quxian option:selected").val();
             var shequ = $("#_shequ option:selected").val();
             var jiedao = $("#_jiedao option:selected").val();
@@ -223,10 +226,10 @@ src="content/templates/images/jQuery.FillOptions.js"></SCRIPT>
 //            if (!isCheck) {
 //                return false;
 //            }
-            if (quxian == "-2" || shequ == "-2" || jiedao == "-2") {
-                if (parseInt($('#_chengshi option:selected').val()) <= 17 || parseInt($('#_chengshi option:selected').val()) >= 19)
-                    return false;
-            }
+        //    if (quxian == "-2" || shequ == "-2" || jiedao == "-2") {
+       //         if (parseInt($('#_chengshi option:selected').val()) <= 17 || parseInt($('#_chengshi option:selected').val()) >= 19)
+        //            return false;
+        //    }
             if (!$("#CheckBox1").attr("checked")) {
                 $("#CheckBox1").focus();
                 return false;
@@ -243,11 +246,9 @@ src="content/templates/images/jQuery.FillOptions.js"></SCRIPT>
     </SCRIPT>
    <FORM id=form1 encType=multipart/form-data 
 onsubmit="javascript:return WebForm_OnSubmit();" method=post name=form1 
-action=/web/register.shtml>
-<DIV><INPUT id=__EVENTTARGET type=hidden name=__EVENTTARGET> <INPUT 
-id=__EVENTARGUMENT type=hidden name=__EVENTARGUMENT> <INPUT id=__VIEWSTATE 
-value=/wEPDwUKLTQ1MzU4NDU3Mw9kFgICAxAWAh4HZW5jdHlwZQUTbXVsdGlwYXJ0L2Zvcm0tZGF0YWQWCAIdDxAPFgYeDURhdGFUZXh0RmllbGQFBG5hbWUeDkRhdGFWYWx1ZUZpZWxkBQJpZB4LXyFEYXRhQm91bmRnZBAVBQnor7fpgInmi6kG5Zui5ZGYBuWFmuWRmAbnvqTkvJcS5YW25LuW5YWa5rS+5Lq65aOrFQUCLTEBMQEyATMBNBQrAwVnZ2dnZ2RkAiMPEA8WBh8BBQRuYW1lHwIFAmlkHwNnZBAVFQnor7fpgInmi6kJ5ZOI5bCU5ruoDOm9kOm9kOWTiOWwlAnniaHkuLnmsZ8J5L2z5pyo5pavBuWkp+W6hgbpuKHopb8J5Y+M6bit5bGxBuS8iuaYpQnkuIPlj7DmsrMG6bmk5bKXBue7peWMlgbpu5HmsrMM5aSn5YW05a6J5bKtDOajruW3peaAu+WxgAzlhpzlnqbmgLvlsYAS5ZOI5bCU5ruo6ZOB6Lev5bGADOWkp+W6huayueeUsBLnnIHnm7TmnLrlhbPlt6Xlp5QM55yB55u06auY5qChCeecgeebtOWxnhUVAi0yATIBMwE0ATUBNgE3ATgBOQIxMAIxMQIxMgIxNAIxNQIxNgIxNwIxOAIxOQIyMAIyMQIyNBQrAxVnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dkZAIxDxAPFgYfAQUEbmFtZR8CBQJpZB8DZ2QQFQoJ6K+36YCJ5oupBuWwj+WtpgbliJ3kuK0G6auY5LitBuS4reS4kwbmnKznp5EG5LiT56eRBuehleWjqwbljZrlo6sG5oqA5qChFQoCLTEBMQEyATMBNAE1ATYBNwE4ATkUKwMKZ2dnZ2dnZ2dnZ2RkAj0PEA8WBh8BBQRuYW1lHwIFAmlkHwNnZBAVEgblhZrlkZgG6Z2S5bm0BuW3vuW4vAbogYzlt6UG6ICB5bm0Cee6ouWNgeWtlwbnjq/kv50G5rOV5b6LBuenkeaZrgbliqnmrosG5raI6ZiyBuWNq+eUnwzlhajmsJHlgaXouqsM5b+D55CG5YGl5bq3BumHkeiejQzmlofmmI7ln47luIIG5oWI5ZaEBuemgeavkhUSATEBMgEzATQBNQE2ATcBOAE5AjEwAjExAjEyAjEzAjE0AjE1AjE2AjE3AjY0FCsDEmdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2RkGAEFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxYZBQdfdXBsb2FkBQlfeGluZ2JpZTEFCV94aW5nYmllMgUJX3hpbmdiaWUyBQlfeGllaHVpJDAFCV94aWVodWkkMQUJX3hpZWh1aSQyBQlfeGllaHVpJDMFCV94aWVodWkkNAUJX3hpZWh1aSQ1BQlfeGllaHVpJDYFCV94aWVodWkkNwUJX3hpZWh1aSQ4BQlfeGllaHVpJDkFCl94aWVodWkkMTAFCl94aWVodWkkMTEFCl94aWVodWkkMTIFCl94aWVodWkkMTMFCl94aWVodWkkMTQFCl94aWVodWkkMTUFCl94aWVodWkkMTYFCl94aWVodWkkMTcFCl94aWVodWkkMTcFCUNoZWNrQm94MQUHX3N1Ym1pdKrEYfQowcv7nQlihc+6A4k/RkBD 
-type=hidden name=__VIEWSTATE> </DIV>
+action="?register">
+
+
 <SCRIPT type=text/javascript>
 //<![CDATA[
 var theForm = document.forms['form1'];
@@ -378,21 +379,13 @@ name=_picID>
                 <TD><INPUT style="WIDTH: 106px" id=_zhiji maxLength=20 
                   type=text name=_zhiji></TD></TR>
               <TR>
-                <TD bgColor=#f7f7f7 height=35 align=right>所在城市：</TD>
+                <TD bgColor=#f7f7f7 height=35 align=right>所在地区：</TD>
                 <TD bgColor=#f7f7f7 colSpan=5><SELECT style="WIDTH: 106px" 
                   id=_chengshi name=_chengshi> <OPTION selected 
-                    value=-2>请选择</OPTION> <OPTION value=2>哈尔滨</OPTION> <OPTION 
-                    value=3>齐齐哈尔</OPTION> <OPTION value=4>牡丹江</OPTION> <OPTION 
-                    value=5>佳木斯</OPTION> <OPTION value=6>大庆</OPTION> <OPTION 
-                    value=7>鸡西</OPTION> <OPTION value=8>双鸭山</OPTION> <OPTION 
-                    value=9>伊春</OPTION> <OPTION value=10>七台河</OPTION> <OPTION 
-                    value=11>鹤岗</OPTION> <OPTION value=12>绥化</OPTION> <OPTION 
-                    value=14>黑河</OPTION> <OPTION value=15>大兴安岭</OPTION> <OPTION 
-                    value=16>森工总局</OPTION> <OPTION value=17>农垦总局</OPTION> 
-                    <OPTION value=18>哈尔滨铁路局</OPTION> <OPTION 
-                    value=19>大庆油田</OPTION> <OPTION value=20>省直机关工委</OPTION> 
-                    <OPTION value=21>省直高校</OPTION> <OPTION 
-                  value=24>省直属</OPTION></SELECT> <SPAN 
+                    value=-2>请选择</OPTION> 
+                    <OPTION value=2>山东</OPTION> 
+                    <OPTION value=3>四川</OPTION> 
+             </SELECT> <SPAN 
                   style="DISPLAY: none; COLOR: red" 
                   id=CustomValidator3></SPAN><SPAN style="COLOR: red">*</SPAN> 
                   &nbsp;区/县/市：<SELECT style="WIDTH: 108px" id=_quxian 
@@ -438,12 +431,15 @@ name=_picID>
                 <TD height=35 align=right>身份证号：</TD>
                 <TD colSpan=5><SELECT id=DropDownList1 name=DropDownList1> 
                     <OPTION selected value=1>身份证</OPTION> <OPTION 
-                    value=2>护照号</OPTION> <OPTION value=3>回乡证号</OPTION></SELECT> 
+                    value=2>学生证号</OPTION> <OPTION value=3>其他证件</OPTION></SELECT> 
                   <INPUT style="WIDTH: 428px" id=_shenfenzheng maxLength=19 
                   type=text name=_shenfenzheng> <SPAN 
                   style="DISPLAY: none; COLOR: red" 
                   id=RequiredFieldValidator2></SPAN><SPAN 
-                  style="COLOR: red">*<BR>注：无身份证则填入其它证件号如护照号，回乡证号。</SPAN></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+                  style="COLOR: red">*<BR>注：无身份证则填入其它证件号。
+                  </SPAN></TD></TR>
+                  </TBODY></TABLE></TD></TR>
+                  </TBODY></TABLE></TD></TR>
   <TR>
     <TD><IMG alt="" src="content/templates/images/register_21.png" width=939 
       height=33></TD></TR>
@@ -459,7 +455,7 @@ name=_picID>
                 <TD><INPUT id=_xiehui_0 type=checkbox name=_xiehui$0><LABEL 
                   for=_xiehui_0>党员</LABEL></TD>
                 <TD><INPUT id=_xiehui_1 type=checkbox name=_xiehui$1><LABEL 
-                  for=_xiehui_1>青年</LABEL></TD>
+                  for=_xiehui_1>青少年</LABEL></TD>
                 <TD><INPUT id=_xiehui_2 type=checkbox name=_xiehui$2><LABEL 
                   for=_xiehui_2>巾帼</LABEL></TD>
                 <TD><INPUT id=_xiehui_3 type=checkbox name=_xiehui$3><LABEL 
@@ -486,13 +482,13 @@ name=_picID>
                 <TD><INPUT id=_xiehui_13 type=checkbox name=_xiehui$13><LABEL 
                   for=_xiehui_13>心理健康</LABEL></TD>
                 <TD><INPUT id=_xiehui_14 type=checkbox name=_xiehui$14><LABEL 
-                  for=_xiehui_14>金融</LABEL></TD>
+                  for=_xiehui_14>助学</LABEL></TD>
                 <TD><INPUT id=_xiehui_15 type=checkbox name=_xiehui$15><LABEL 
                   for=_xiehui_15>文明城市</LABEL></TD>
                 <TD><INPUT id=_xiehui_16 type=checkbox name=_xiehui$16><LABEL 
                   for=_xiehui_16>慈善</LABEL></TD>
                 <TD><INPUT id=_xiehui_17 type=checkbox name=_xiehui$17><LABEL 
-                  for=_xiehui_17>禁毒</LABEL></TD>
+                  for=_xiehui_17>其他</LABEL></TD>
                 <TD></TD>
                 <TD></TD>
                 <TD></TD>
@@ -574,13 +570,7 @@ name=_picID>
           <TD><A id=_reset href="http://zy.dbw.cn/web/register.shtml#"><IMG 
             alt="" src="content/templates/images/register_30.png" width=109 
             height=35></A></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
-<TABLE border=0 cellSpacing=0 cellPadding=0 align=center>
-  <TBODY>
-  <TR>
-    <TD 
-    style="PADDING-BOTTOM: 20px; LINE-HEIGHT: 25px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 20px" 
-    align=middle>爱心之声
-</TD></TR></TBODY></TABLE>
+
 <SCRIPT type=text/javascript>
 //<![CDATA[
 var Page_Validators =  new Array(document.getElementById("RequiredFieldValidator3"), document.getElementById("RequiredFieldValidator4"), document.getElementById("RequiredFieldValidator5"), document.getElementById("CompareValidator1"), document.getElementById("RequiredFieldValidator1"), document.getElementById("CustomValidator3"), document.getElementById("RequiredFieldValidator2"), document.getElementById("CustomValidator1"));
