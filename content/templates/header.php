@@ -30,4 +30,4 @@ require_once View::getView('module');
 <div id="wrap">
 
   <div id="banner"><a href="<?php echo BLOG_URL; ?>"><img src="<?php echo BLOG_URL.Option::get('topimg'); ?>" height="134" width="960" /></a></div>
-  <div id="nav"><?php blog_navi();?></div>
+  <!-- div id="nav"><?php blog_navi();?></div-->

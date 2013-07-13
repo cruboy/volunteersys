@@ -8,12 +8,6 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <div id="content">
 
 
-
-<TABLE border=0 cellSpacing=0 cellPadding=0 align=center>
-  <TBODY>
-  <TR>
-    <TD><IMG alt="" src="content/templates/images/index_02.jpg" width=941 
-      height=375> </TD></TR></TBODY></TABLE>
 <TABLE style="MARGIN: 0px 0px 10px" border=0 cellSpacing=0 cellPadding=0 
 width=941 align=center>
   <TBODY>

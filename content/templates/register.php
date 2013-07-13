@@ -282,11 +282,7 @@ return true;
 value=/wEWYAK63/iTBgLtkbTVBALOrdCWAwKwg8JYAq6N8/EEAq6Nu/EEAtG658cCAr6E/4oCAr+E/4oCApfqmIgGApvq1IsGAprq1IsGApnq1IsGApjq1IsGAuKToewOAq+oqtsBAtHDt5MEAtzD/5AEAt/D/5AEAt7D/5AEAtnD/5AEAtjD/5AEAtvD/5AEAsrD/5AEAsXD/5AEAt3Dv5MEAt3Ds5MEAt3Dt5MEAt3Dj5MEAt3Dg5MEAt3Dh5MEAt3Dm5MEAt3D35AEAt3D05AEAtzDv5MEAtzDs5MEAtzDj5MEAqyVtgECr5W2AQKulbYBAsP5gasMAs/5zagMAs75zagMAs35zagMAsz5zagMAsv5zagMAsr5zagMAtuU/IMKAt+Djr4GAtODwr0GAtKDwr0GAtGDwr0GAtCDwr0GAteDwr0GAtaDwr0GAtWDwr0GAsSDwr0GAsuDwr0GAsK9xckJArTFzLgOApKLpYsGApOLpYsGApCLpYsGAq2C8+YJAuW5s5QBAua5s5QBAue5s5QBAui5s5QBAuG5s5QBAuK5s5QBAuO5s5QBAuS5s5QBAu25s5QBAu65s5QBAua585QBAua595QBAua565QBAua575QBAua5g5UBAua5h5UBAua5+5QBAua5/5QBAuz23+0EAt6VufQDAp+O/u8KAo3r9eUCApeo8U8C/rPTkw4C9ezI1AsChqT42wUCwZGq8gEC0ZfYpQsCrNiXgA8C2+q7sQwCguTXuwkC79K49gQVcGMU1lp5aFUl21O88XownFfR9A== 
 type=hidden name=__EVENTVALIDATION> </DIV><INPUT id=_picID type=hidden 
 name=_picID> 
-<TABLE border=0 cellSpacing=0 cellPadding=0 align=center>
-  <TBODY>
-  <TR>
-    <TD><IMG alt="" src="content/templates/images/register_02.png" width=941 
-      height=377></TD></TR></TBODY></TABLE>
+
 <TABLE border=0 cellSpacing=0 cellPadding=0 align=center>
   <TBODY>
   <TR>
