@@ -69,12 +69,13 @@ print_r($_POST);
 print_r($_FILES);
     	$photo_type = array('gif', 'jpg', 'jpeg','png');
 	$usericon = "content/templates/images/nopic.jpg";
-	if ($_FILES['_file']['size'] > 0) {
-		$file_info = uploadFile2($_FILES['_file']['name'], $_FILES['_file']['error'], $_FILES['_file']['tmp_name'], $_FILES['_file']['size'], $photo_type, true);
+	if ($_FILES['filepo']['size'] > 0) {
+		$file_info = uploadFile2($_FILES['filepo']['name'], $_FILES['filepo']['error'], $_FILES['filepo']['tmp_name'], $_FILES['filepo']['size'], $photo_type, true);
 		if (!empty($file_info['file_path'])) {
 			$usericon = !empty($file_info['thum_file']) ? $file_info['thum_file'] : $file_info['file_path'];
 		}
 	}
+	$photoname=$usericon;
 	print_r($file_info);
 
 	$sql2 = "SELECT * FROM ".DB_PREFIX."zone WHERE `status`='1'";
