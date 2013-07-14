@@ -1,0 +1,39 @@
+CREATE TABLE IF NOT EXISTS `vo_user` (
+  `uid` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(32) NOT NULL DEFAULT '',
+  `password` varchar(64) NOT NULL DEFAULT '',
+  `nickname` varchar(20) NOT NULL DEFAULT '',
+  `role` varchar(60) NOT NULL DEFAULT '',
+  `photo` varchar(255) NOT NULL DEFAULT '',
+  `email` varchar(60) NOT NULL DEFAULT '',
+  `description` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`uid`),
+  KEY `username` (`username`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+Array ( [0] => /?register [1] => register ) Array ( [register] => [rg] => ) Array ( [photoname] => ../content/uploadfile/201307/thum-fa171373770020.jpg [upphoto] => 0 [nickName] => aaaaa [password] => aaaaaa [password2] => aaaaaa [xingming] => aaa [xingbie] => xingbie1 [zhengzhimianmao] => 1 [danwei] => [zhiji] => [zone] => 27 [city] => 294 [district] => 2757 [shenfen] => 2 [zhuanye] => [xueli] => 2 [biyeyuanxiao] => [techang] => [DropDownList1] => 1 [shenfenzheng] => 22222 [xiehui$1] => on [xiehui$13] => on [shouji] => 222 [youxiang] => [guhua] => [QQ] => [danweidizhi] => [danweiyoubian] => [jiatingzhuzhi] => [jiatingyoubian] => [CheckBox1] => on [submit_x] => 62 [submit_y] => 22 ) Array ( [filepo] => Array ( [name] => [type] => [tmp_name] => [error] => 4 [size] => 0 ) ) 
+
+ALTER TABLE `vo_user` ADD `xingming` VARCHAR( 100 ) NOT NULL DEFAULT '';
+ALTER TABLE `vo_user` ADD `xingbie` VARCHAR( 100 ) NOT NULL DEFAULT '';
+ALTER TABLE `vo_user` ADD `zhengzhimianmao` VARCHAR( 100 ) NOT NULL DEFAULT '';
+ALTER TABLE `vo_user` ADD `danwei` VARCHAR( 100 ) NOT NULL DEFAULT '';
+ALTER TABLE `vo_user` ADD `zhiji` VARCHAR( 100 ) NOT NULL DEFAULT '';
+ALTER TABLE `vo_user` ADD `zone` int(10) NOT NULL DEFAULT 0;
+ALTER TABLE `vo_user` ADD `city` int(10) NOT NULL DEFAULT 0;
+ALTER TABLE `vo_user` ADD `district` int(10) NOT NULL DEFAULT 0;
+ALTER TABLE `vo_user` ADD `shenfen` VARCHAR( 100 ) NOT NULL DEFAULT '';
+ALTER TABLE `vo_user` ADD `zhuanye` VARCHAR( 100 ) NOT NULL DEFAULT '';
+ALTER TABLE `vo_user` ADD `xueli` VARCHAR( 100 ) NOT NULL DEFAULT '';
+ALTER TABLE `vo_user` ADD `biyeyuanxiao` VARCHAR( 100 ) NOT NULL DEFAULT '';
+ALTER TABLE `vo_user` ADD `techang` VARCHAR( 100 ) NOT NULL DEFAULT '';
+ALTER TABLE `vo_user` ADD `zheng` VARCHAR( 100 ) NOT NULL DEFAULT '';
+ALTER TABLE `vo_user` ADD `shenfenzheng` VARCHAR( 100 ) NOT NULL DEFAULT '';
+ALTER TABLE `vo_user` ADD `shouji` VARCHAR( 100 ) NOT NULL DEFAULT '';
+ALTER TABLE `vo_user` ADD `guhua` VARCHAR( 100 ) NOT NULL DEFAULT '';
+ALTER TABLE `vo_user` ADD `QQ` VARCHAR( 100 ) NOT NULL DEFAULT '';
+ALTER TABLE `vo_user` ADD `danweidizhi` VARCHAR( 100 ) NOT NULL DEFAULT '';
+ALTER TABLE `vo_user` ADD `danweiyoubian` VARCHAR( 100 ) NOT NULL DEFAULT '';
+ALTER TABLE `vo_user` ADD `jiatingzhuzhi` VARCHAR( 100 ) NOT NULL DEFAULT '';
+ALTER TABLE `vo_user` ADD `jiatingyoubian` VARCHAR( 100 ) NOT NULL DEFAULT '';
+ALTER TABLE `vo_user` ADD `xiehui` VARCHAR( 300 ) NOT NULL DEFAULT '';
+ALTER TABLE `vo_user` ADD `` VARCHAR( 100 ) NOT NULL DEFAULT '';

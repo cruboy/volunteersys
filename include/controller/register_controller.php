@@ -36,7 +36,18 @@ $usericon = "content/templates/images/nopic.jpg";
 $gip=getIp();   
 $uid=UID;
 $DB = MySql::getInstance();
-
+if(isset($_GET['rg'])){
+	$User_Model = new User_Model();
+	$rets=$User_Model->regUser(($_POST));
+		emMsg('注册成功！非常感谢！请登录', '/');
+		exit;
+}
+    if(isset($_GET['name'])){
+	$User_Model = new User_Model();
+	$rets=$User_Model->isUserExist(addslashes(trim($_GET['name'])));
+	echo intval($rets);
+	exit;
+}
 if(isset($_POST['zoneId'])){
 	$zoneId=intval($_POST['zoneId']);
      $sql = "SELECT * FROM " . DB_PREFIX . 
@@ -64,9 +75,10 @@ if(isset($_POST['zoneId'])){
  		//include View::getView('header');
        // include View::getView('register');
         //include View::getView('footer');
-    print_r($params);
-print_r($_POST);
-print_r($_FILES);
+ //   print_r($params);
+ //   print_r($_GET);
+//print_r($_POST);
+//print_r($_FILES);
     	$photo_type = array('gif', 'jpg', 'jpeg','png');
 	$usericon = "content/templates/images/nopic.jpg";
 	if ($_FILES['filepo']['size'] > 0) {
@@ -76,7 +88,7 @@ print_r($_FILES);
 		}
 	}
 	$photoname=$usericon;
-	print_r($file_info);
+//	print_r($file_info);
 
 	$sql2 = "SELECT * FROM ".DB_PREFIX."zone WHERE `status`='1'";
 			$res= $DB->query($sql2);

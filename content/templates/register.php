@@ -38,6 +38,7 @@ TD {
                     alert("文件大小不能超过200 KB，请重新选择文件！");
                     return false;
                 }
+                document.forms['form1'].action="?register&up";
                 return true;
             };
             document.getElementById('reset').onclick = function () {
@@ -80,7 +81,18 @@ TD {
         }
 
         function Check() {
-            if (!JCheck($("#nickName")) || !JCheck($("#password")) || 
+             if ($.ajax({
+            type: "GET",
+            url: "?register",
+            cache: false,
+            async: false,
+            data: "name=" + escape($.trim($('#username').val()))
+        }).responseText != "0") {
+            alert('登录名已存在，请换一个！');
+            $("#username").focus();
+            return false;
+        };
+            if (!JCheck($("#username")) || !JCheck($("#password")) || 
                     !CheckLength() || !Comp($("#password"), $("#password2")) 
                     || !JCheck($("#xingming")) || !JCheck($("#shenfenzheng"))
                      || (!JCheck($("#guhua")) && !JCheck($("#shouji"))))
@@ -97,39 +109,19 @@ TD {
                 $("#xueli").focus();
                 return false;
             }
-         /*   if ($.ajax({
-                type: "GET",
-                url: "?register",
-                cache: false,
-                async: false,
-                data: "name=" + escape($.trim($('#nickName').val()))
-            }).responseText != "0") {
-                alert('登录名已存在，请重新填写！');
-                $("#nickName").focus();
-                return false;
-            };*/
+    
 
-            if (!$("#CheckBox1").attr("checked")) {
-                $("#CheckBox1").focus();
+            if (!$("#agrees").attr("checked")) {
+                $("#agrees").focus();
                 return false;
             }
+            document.forms['form1'].action="?register&rg";
             return true;
         }
     </SCRIPT>
    <FORM id=form1 encType=multipart/form-data 
-onsubmit="javascript:return WebForm_OnSubmit();" method=post name=form1 
-action="?register">
-
-
-
-<SCRIPT type=text/javascript>
-//<![CDATA[
-function WebForm_OnSubmit() {
-if (typeof(ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) return false;
-return true;
-}
-//]]>
-</SCRIPT>
+ method=post name=form1 
+>
 
 <TABLE border=0 cellSpacing=0 cellPadding=0 align=center>
   <TBODY>
@@ -175,13 +167,13 @@ return true;
                         K以内</DIV></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD>
           <TD width=10>&nbsp;</TD>
           <TD>
-          <input type="hidden" name="photoname" value="<?php echo $photoname; ?>"/><br />
+          <input type="hidden" name="photo" value="<?php echo $photoname; ?>"/>
             <TABLE border=0 cellSpacing=0 cellPadding=0 width=750 align=right>
               <TBODY>
               <TR>
                 <TD class=f_b_01 bgColor=#ecf5ff height=35 align=right>登录名：</TD>
-                <TD bgColor=#ecf5ff><INPUT style="WIDTH: 180px" id=nickName 
-                  maxLength=10 type=text name=nickName> <SPAN 
+                <TD bgColor=#ecf5ff><INPUT style="WIDTH: 180px" id=username 
+                  maxLength=10 type=text name=username> <SPAN 
                   style="DISPLAY: none; COLOR: red" 
                   id=RequiredFieldValidator3></SPAN><SPAN 
                   style="COLOR: red">*</SPAN></TD>
@@ -207,9 +199,9 @@ return true;
                   id=RequiredFieldValidator1></SPAN><SPAN 
                   style="COLOR: red">*</SPAN></TD>
                 <TD align=right>性别：</TD>
-                <TD><INPUT id=xingbie1 value=xingbie1 CHECKED type=radio 
+                <TD><INPUT id=xingbie1 value='男'  CHECKED type=radio 
                   name=xingbie><LABEL for=xingbie1>男</LABEL><SPAN 
-                  style="MARGIN-LEFT: 10px"><INPUT id=xingbie2 value=xingbie2 
+                  style="MARGIN-LEFT: 10px"><INPUT id=xingbie2 value='女' 
                   type=radio name=xingbie><LABEL 
                 for=xingbie2>女</LABEL></SPAN></TD>
                 <TD align=right>政治面貌：</TD>
@@ -273,7 +265,7 @@ return true;
                   maxLength=40 type=text name=techang></TD></TR>
               <TR>
                 <TD height=35 align=right>身份证号：</TD>
-                <TD colSpan=5><SELECT id=DropDownList1 name=DropDownList1> 
+                <TD colSpan=5><SELECT id=zheng name=zheng> 
                     <OPTION selected value=1>身份证</OPTION> <OPTION 
                     value=2>学生证号</OPTION> <OPTION value=3>其他证件</OPTION></SELECT> 
                   <INPUT style="WIDTH: 428px" id=shenfenzheng maxLength=19 
@@ -357,8 +349,8 @@ return true;
             id=CustomValidator1></SPAN><SPAN 
             style="COLOR: red">*与固话至少填写其中一项</SPAN></TD>
           <TD>电子邮箱：</TD>
-          <TD><INPUT style="WIDTH: 200px" id=youxiang maxLength=20 type=text 
-            name=youxiang></TD></TR>
+          <TD><INPUT style="WIDTH: 200px" id=email maxLength=20 type=text 
+            name=email></TD></TR>
         <TR>
           <TD height=35>固定电话：</TD>
           <TD><INPUT style="WIDTH: 300px" id=guhua maxLength=20 type=text 
@@ -391,8 +383,8 @@ return true;
         <TR>
           <TD height=50 
             align=middle>本人自愿成为志愿者，遵守国家法律和志愿服务章程，为弘扬志愿服务精神，推动志愿服务尽一份力量。<BR><BR><INPUT 
-            id=CheckBox1 type=checkbox 
-        name=CheckBox1>同意以上陈述。<BR><BR></TD></TR></TBODY></TABLE>
+            id=agrees type=checkbox 
+        name=agrees>同意以上陈述。<BR><BR></TD></TR></TBODY></TABLE>
       <TABLE border=0 cellSpacing=0 cellPadding=0 align=center>
         <TBODY>
         <TR>

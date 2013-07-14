@@ -60,6 +60,31 @@ class User_Model {
 		$sql="insert into ".DB_PREFIX."user (username,password,role) values('$login','$password','$role')";
 		$this->db->query($sql);
 	}
+	
+	function regUser($regDate) {
+		$PHPASS = new PasswordHash(8, true);
+		$newpass = $PHPASS->HashPassword($regDate['password']);
+		//print_r($regDate);
+		$a="";
+			$kItem = array();
+		$dItem = array();
+		foreach ($regDate as $key => $data) {
+			if($key=="password2")continue;
+			if($key=="agrees")continue;
+			if($key=="password")continue;
+			if($key=="submit_x")continue;
+			if($key=="submit_y")continue;
+			if(strstr($key,"xiehui")){
+				$a.=$key." ";
+				continue;}
+			$kItem[] = $key;
+			$dItem[] =addslashes(trim($data)) ;
+		}
+		$field = implode(',', $kItem);
+		$values = "'" . implode("','", $dItem) . "'";
+		$sql="insert into ".DB_PREFIX."user ($field,role,xiehui,password) values($values,'writer','$a','$newpass')";
+		$this->db->query($sql);
+	}
 
 	function deleteUser($uid) {
 		$this->db->query("update ".DB_PREFIX."blog set author=1 where author=$uid");
