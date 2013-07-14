@@ -18,7 +18,7 @@ TD {
 </STYLE>
 
 <SCRIPT type=text/javascript src="content/templates/images/jquery.js"></SCRIPT>
-
+<SCRIPT type=text/javascript src="content/templates/images/pback.js"></SCRIPT>
 <SCRIPT type=text/javascript>
         $(document).ready(function () {
             $(":text,:file,:password,select").attr('class', 'input02');
@@ -31,14 +31,9 @@ TD {
 
             document.getElementById('_upload').onclick = function () {
               //  $("#HiddenField11").val(escape($("#_quxian").html()));
-                $("#_xiehui_shi_v").val(escape($("#_xiehui_shi").html()));
-                $("#_xiehui_qu_v").val(escape($("#_xiehui_qu").html()));
-                $("#_xiehui_jie_v").val(escape($("#_xiehui_jie").html()));
-                $("#_xiehui_shequ_v").val(escape($("#_xiehui_shequ").html()));
-                var uploadValue = $("#_file").val();
-                if (uploadValue.length == 0)
+                  var uploadValue = $("#_file").val();
+               if (uploadValue.length == 0)
                     return false;
-
                 var type = uploadValue.substr(uploadValue.lastIndexOf('.')).toLowerCase();
                 if (!(type == ".jpg" || type == ".jpeg" || type == ".gif" || type == ".png")) {
                     alert('该文件不是合法图片，请重新选择文件！');
@@ -50,7 +45,7 @@ TD {
                     alert("文件大小不能超过200 KB，请重新选择文件！");
                     return false;
                 }
-
+               // javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions("_upload", "", true, "", "", false, false));
                 return true;
             };
             document.getElementById('_reset').onclick = function () {
@@ -60,7 +55,7 @@ TD {
         });
         function PhoneValidate(sender, args) { args.IsValid = ($("#_shouji").val().length > 0 || $("#_guhua").val().length > 0); }
         function AreaValidate(sender, args) { args.IsValid = (args.Value != "-2"); }
-        function success() { alert('恭喜您，注册成功！'); window.location.href = '/default.shtml'; }
+        function success() { alert('恭喜您，注册成功！'); window.location.href = '/'; }
         function JCheck(obj) {
             var tempss = obj.val().replace(" ", "");
             if (tempss == "") {
@@ -185,9 +180,7 @@ return true;
 //]]>
 </SCRIPT>
 
-<DIV><INPUT id=__EVENTVALIDATION 
-value=fqmIgGApvq1IsGAprq1IsGApnq1IsGApjq76frytAt7Dd754
-name=_picID> 
+<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value=""/>
 
 <TABLE border=0 cellSpacing=0 cellPadding=0 align=center>
   <TBODY>
@@ -212,7 +205,7 @@ name=_picID>
                 <TD><IMG 
                   style="BORDER-RIGHT-WIDTH: 0px; WIDTH: 138px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; HEIGHT: 176px; BORDER-LEFT-WIDTH: 0px" 
                   id=_photo class=border01 
-              src="content/templates/images/nopic.jpg"></TD></TR>
+              src="<?php echo $usericon;?>"></TD></TR>
               <TR>
                 <TD height=8 align=middle></TD></TR>
               <TR>
@@ -226,7 +219,7 @@ name=_picID>
                       <TD><INPUT 
                         style="BORDER-RIGHT-WIDTH: 0px; WIDTH: 72px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; HEIGHT: 27px; BORDER-LEFT-WIDTH: 0px" 
                         id=_upload 
-                        onclick='javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions("_upload", "", true, "", "", false, false))' 
+                        onclick='' 
                         src="content/templates/images/register_18.png" type=image 
                         name=_upload> 
                         <DIV style="MARGIN-TOP: 5px; FONT-SIZE: 12px">图片大小200 
@@ -395,19 +388,10 @@ name=_picID>
                 <TD></TD>
                 <TD></TD>
                 <TD></TD>
-                <TD></TD></TR></TBODY></TABLE>
-            <DIV style="WIDTH: 95%; MARGIN-LEFT: 10px" 
-            id=_xiehui_shi></DIV><INPUT id=_xiehui_shi_v type=hidden 
-            name=_xiehui_shi_v> 
-            <DIV style="WIDTH: 95%; MARGIN-LEFT: 10px" 
-            id=_xiehui_qu></DIV><INPUT id=_xiehui_qu_v type=hidden 
-            name=_xiehui_qu_v> 
-            <DIV style="WIDTH: 95%; MARGIN-LEFT: 10px" 
-            id=_xiehui_jie></DIV><INPUT id=_xiehui_jie_v type=hidden 
-            name=_xiehui_jie_v> 
-            <DIV style="WIDTH: 95%; MARGIN-LEFT: 10px" 
-            id=_xiehui_shequ></DIV><INPUT id=_xiehui_shequ_v type=hidden 
-            name=_xiehui_shequ_v> </TD></TR></TBODY></TABLE></TD></TR>
+                <TD></TD></TR>
+                </TBODY></TABLE>
+            </TD></TR></TBODY>
+            </TABLE></TD></TR>
   <TR>
     <TD><IMG alt="" src="content/templates/images/register_23.png" width=939 
       height=33></TD></TR>

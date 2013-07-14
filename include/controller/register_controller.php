@@ -21,6 +21,7 @@ $sql2 = "SELECT * FROM ".DB_PREFIX."zone WHERE `status`='1'";
 				$zones[]=$row;
 			}
 //print_r($zones);
+$usericon = "content/templates/images/nopic.jpg";
  		include View::getView('header');
         include View::getView('register');
         include View::getView('footer');
@@ -63,8 +64,29 @@ if(isset($_POST['zoneId'])){
  		//include View::getView('header');
        // include View::getView('register');
         //include View::getView('footer');
-    //print_r($params);
-//print_r($_POST);
+    print_r($params);
+print_r($_POST);
+print_r($_FILES);
+    	$photo_type = array('gif', 'jpg', 'jpeg','png');
+	$usericon = "content/templates/images/nopic.jpg";
+	if ($_FILES['_file']['size'] > 0) {
+		$file_info = uploadFile2($_FILES['_file']['name'], $_FILES['_file']['error'], $_FILES['_file']['tmp_name'], $_FILES['_file']['size'], $photo_type, true);
+		if (!empty($file_info['file_path'])) {
+			$usericon = !empty($file_info['thum_file']) ? $file_info['thum_file'] : $file_info['file_path'];
+		}
+	}
+	print_r($file_info);
+
+	$sql2 = "SELECT * FROM ".DB_PREFIX."zone WHERE `status`='1'";
+			$res= $DB->query($sql2);
+			while ($row=$DB->fetch_array($res)){
+				$zones[]=$row;
+			}
+//print_r($zones);
+ 		include View::getView('header');
+        include View::getView('register');
+        include View::getView('footer');
+	
 }
 
 }

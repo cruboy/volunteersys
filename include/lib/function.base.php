@@ -360,6 +360,37 @@ function findArray($array1, $array2) {
 	return $r;
 }
 
+function uploadFile2($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = false, $is_thumbnail = true) {
+	if(ON_ACE)
+	$result = upload_ace($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon, $is_thumbnail);
+	else
+		$result = upload2($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon, $is_thumbnail);
+	switch ($result) {
+		case '100':
+			emMsg('文件大小超过系统' . ini_get('upload_max_filesize') . '限制');
+			break;
+		case '101':
+			emMsg('上传文件失败,错误码：' . $errorNum);
+			break;
+		case '102':
+			emMsg('错误的文件类型');
+			break;
+		case '103':
+			$ret = changeFileSize(Option::UPLOADFILE_MAXSIZE);
+			emMsg("文件大小超出{$ret}的限制");
+			break;
+		case '104':
+			emMsg('创建文件上传目录失败');
+			break;
+		case '105':
+			emMsg('上传失败。文件上传目录(content/uploadfile)不可写');
+			break;
+		default:
+			return $result;
+			break;
+	}
+}
+
 function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = false, $is_thumbnail = true) {
 	if(ON_ACE)
 	$result = upload_ace($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon, $is_thumbnail);
@@ -461,10 +492,11 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
 	$fname = substr(md5($fileName), 0, 4) . time() . '.' . $extension;
 	$attachpath = $uppath . $fname;
 	$file_info['file_path'] = $attachpath;
+	//echo $uppath;
 	if (!is_dir(Option::UPLOADFILE_PATH)) {
 		@umask(0);
 		$ret = @mkdir(Option::UPLOADFILE_PATH, 0777);
-		if ($ret === false) {
+		if ($ret === false) {echo "=a";
 			return '104'; //创建文件上传目录失败
 		}
 	}
@@ -516,6 +548,89 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
 			$file_info['height'] = $size[1];
 		}
 	}
+	return $file_info;
+}
+function upload2($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = false, $is_thumbnail = true) {
+	if ($errorNum == 1) {
+		return '100'; //文件大小超过系统限制
+	} elseif ($errorNum > 1) {
+		return '101'; //上传文件失败
+	}
+	$extension = getFileSuffix($fileName);
+	if (!in_array($extension, $type)) {
+		return '102'; //错误的文件类型
+	}
+	if ($fileSize > Option::UPLOADFILE_MAXSIZE) {
+		return '103'; //文件大小超出emlog的限制
+	}
+	$file_info = array();
+	$file_info['file_name'] = $fileName;
+	$file_info['mime_type'] = get_mimetype($extension);
+	$file_info['size'] = $fileSize;
+	$file_info['width'] = 0;
+	$file_info['height'] = 0;
+	$uppath = './content/uploadfile/'. gmdate('Ym') . '/';
+	$fname = substr(md5($fileName), 0, 4) . time() . '.' . $extension;
+	$attachpath = $uppath . $fname;
+	$file_info['file_path'] = $attachpath;
+//	echo $uppath;
+	if (!is_dir('./content/uploadfile/')) {
+		@umask(0);
+		$ret = @mkdir('./content/uploadfile/', 0777);
+		if ($ret === false) {echo "=a";
+			return '104'; //创建文件上传目录失败
+		}
+	}
+	if (!is_dir($uppath)) {
+		@umask(0);
+		$ret = @mkdir($uppath, 0777);
+		if ($ret === false) {
+			return '105'; //上传失败。文件上传目录(content/uploadfile)不可写
+		}
+	}
+	doAction('attach_upload', $tmpFile);
+
+	// 生成缩略图
+	$thum = $uppath . 'thum-' . $fname;
+	if ($is_thumbnail) {
+		if ($isIcon && resizeImage($tmpFile, $thum, Option::ICON_MAX_W, Option::ICON_MAX_H)) {
+			$file_info['thum_file'] = $thum;
+			$file_info['thum_size'] = filesize($thum);
+			$size = getimagesize($thum);
+			if ($size) {
+				$file_info['thum_width'] = $size[0];
+				$file_info['thum_height'] = $size[1];
+			}
+			resizeImage($tmpFile, $uppath . 'thum52-' . $fname, 52, 52);
+		} elseif (resizeImage($tmpFile, $thum, Option::IMG_MAX_W, Option::IMG_MAX_H)) {
+			$file_info['thum_file'] = $thum;
+			$file_info['thum_size'] = filesize($thum);
+			$size = getimagesize($thum);
+			if ($size) {
+				$file_info['thum_width'] = $size[0];
+				$file_info['thum_height'] = $size[1];
+			}
+		}
+	}
+
+	if (@is_uploaded_file($tmpFile)) {
+		if (@!move_uploaded_file($tmpFile, $attachpath)) {
+			@unlink($tmpFile);
+			return '105'; //上传失败。文件上传目录(content/uploadfile)不可写
+		}
+		@chmod($attachpath, 0777);
+	}
+	
+	// 如果附件是图片需要提取宽高
+	if (in_array($file_info['mime_type'], array('image/jpeg', 'image/png', 'image/gif', 'image/bmp'))) {
+		$size = getimagesize($file_info['file_path']);
+		if ($size) {
+			$file_info['width'] = $size[0];
+			$file_info['height'] = $size[1];
+		}
+	}
+	$file_info['file_path']=".".$file_info['file_path'];
+	$file_info['thum_file']=".".$file_info['thum_file'];
 	return $file_info;
 }
 

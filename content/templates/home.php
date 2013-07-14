@@ -44,7 +44,7 @@ width=941 align=center>
                   name=Login1$ImageButtonLogin></TD></TR></TBODY></TABLE></TD></TR>
         <TR>
           <TD height=37 align=middle><A 
-            href="?joinvolunteer"><IMG 
+            href="?register"><IMG 
             src="content/templates/images/btn003.jpg" width=236 height=37></A></TD></TR>
         <TR>
           <TD height=37 align=right><A 
