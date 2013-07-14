@@ -694,6 +694,15 @@ function upload_ace($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = 
 		if ($size) {
 			$file_info['width'] = $size[0];
 			$file_info['height'] = $size[1];
+		}else{
+		$size = getimagesize($file_info['file_path']);
+		if ($size) {
+			$file_info['width'] = $size[0];
+			$file_info['height'] = $size[1];
+		}else{
+				$file_info['width'] = 99;
+			$file_info['height'] = 99;
+		}
 		}
 	}
 	print_r($file_info);

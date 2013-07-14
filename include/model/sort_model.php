@@ -37,6 +37,7 @@ class Sort_Model {
 	}
 
 	function deleteSort($sid) {
+		if($sid==1){echo "错误";return;}
 		$this->db->query("update ".DB_PREFIX."blog set sortid=-1 where sortid=$sid");
 		$this->db->query("update ".DB_PREFIX."sort set pid=0 where pid=$sid");
 		$this->db->query("DELETE FROM ".DB_PREFIX."sort where sid=$sid");
