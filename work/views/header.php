@@ -8,7 +8,7 @@
 <meta name="robots" content="noindex, nofollow">
 <meta http-equiv="X-UA-Compatible" content="IE=8" />
 <title>管理中心 - <?php echo Option::get('blogname'); ?></title>
-<link href="./views/style/<?php echo Option::get('admin_style');?>/style.css" type=text/css rel=stylesheet>
+<link href="./views/style.css" type=text/css rel=stylesheet>
 <link href="./views/css/css-main.css" type=text/css rel=stylesheet>
 <script type="text/javascript" src="../include/lib/js/jquery/jquery-1.7.1.js"></script>
 <script type="text/javascript" src="../include/lib/js/jquery/plugin-cookie.js"></script>
