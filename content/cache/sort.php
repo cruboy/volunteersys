@@ -1,1 +1,1 @@
-<?php exit;//a:0:{}
+<?php exit;//a:1:{i:1;a:8:{s:6:"lognum";i:2;s:8:"sortname";s:6:"活动";s:11:"description";s:0:"";s:5:"alias";s:6:"active";s:3:"sid";i:1;s:5:"taxis";i:0;s:3:"pid";i:0;s:8:"children";a:0:{}}}

@@ -43,7 +43,7 @@
 <div id="side">
 	<div id="sidebartop"></div>
     <div id="log_mg">
-		<li class="sidebarsubmenu" id="menu_wt"><a href="write_log.php"><span class="ico16"></span>写文章</a></li>
+		<li class="sidebarsubmenu" id="menu_wt"><a href="write_log.php"><span class="ico16"></span>文章/活动</a></li>
 		<li class="sidebarsubmenu" id="menu_draft">
     	<a href="admin_log.php?pid=draft">草稿<span id="dfnum">
 		<?php 
@@ -54,7 +54,7 @@
 		}
 		?>
 		</span></a></li>
-		<li class="sidebarsubmenu" id="menu_log"><a href="admin_log.php">文章</a></li>
+		<li class="sidebarsubmenu" id="menu_log"><a href="admin_log.php">文章/活动</a></li>
 		<?php if (ROLE == 'admin'):?>
         <li class="sidebarsubmenu" id="menu_tag"><a href="tag.php">标签</a></li>
         <li class="sidebarsubmenu" id="menu_sort"><a href="sort.php">分类</a></li>

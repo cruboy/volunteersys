@@ -2,7 +2,7 @@
 /*
 Template Name:默认模板
 Description:默认模板，简洁优雅 ……
-Version:1.2
+Version:1.2  <div id="nav"><?php blog_navi();?></div>
 Author:emlog
 Author Url:http://www.emlog.net
 Sidebar Amount:1
@@ -30,4 +30,3 @@ require_once View::getView('module');
 <div id="wrap">
 
   <div id="banner"><a href="<?php echo BLOG_URL; ?>"><img src="<?php echo BLOG_URL.Option::get('topimg'); ?>" height="134" width="960" /></a></div>
-  <!-- div id="nav"><?php blog_navi();?></div-->

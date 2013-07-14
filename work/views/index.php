@@ -36,22 +36,7 @@
 <div class="clear"></div>
 </div>
 </div>
-<script>
-$(document).ready(function(){
-	$("#admindex_msg ul").html("<span class=\"ajax_remind_1\">正在读取...</span>");
-	$.getJSON("http://www.emlog.net/services/messenger.php?v=<?php echo Option::EMLOG_VERSION; ?>&callback=?",
-	function(data){
-		$("#admindex_msg ul").html("");
-		$.each(data.items, function(i,item){
-			var image = '';
-			if (item.image != ''){
-				image = "<a href=\""+item.url+"\" target=\"_blank\" title=\""+item.title+"\"><img src=\""+item.image+"\"></a><br />";
-			}
-			$("#admindex_msg ul").append("<li class=\"msg_type_"+item.type+"\">"+image+"<span>"+item.date+"</span><a href=\""+item.url+"\" target=\"_blank\">"+item.title+"</a></li>");
-		});
-	});
-});
-</script>
+
 <?php endif;?>
 <script>
 $(document).ready(function(){

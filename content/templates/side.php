@@ -5,6 +5,13 @@
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
 ?>
 <ul id="sidebar">
+<li>
+	<h3><span><a href="/" >首页</a></span></h3>
+	<ul id="link">
+		<li></li>
+		</ul>
+	</li>
+
 <?php 
 $widgets = !empty($options_cache['widgets1']) ? unserialize($options_cache['widgets1']) : array();
 doAction('diff_side');

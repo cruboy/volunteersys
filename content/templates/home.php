@@ -60,11 +60,11 @@ src="content/templates/flashobj.js"></SCRIPT>
       <DIV class=focusFlash>
       <DIV style="MARGIN: 8px 0px 0px 1px" id=sasFlashFocus27></DIV>
       <SCRIPT type=text/javascript>
-      var sohuFlash2 = new sohuFlash("/images/demo001.swf", "27", 436, 247, "7");
+      var sohuFlash2 = new sohuFlash("content/templates/demo.swf", "27", 436, 247, "7");
       sohuFlash2.addParam("quality", "high");
       sohuFlash2.addParam("wmode", "opaque");
-      sohuFlash2.addVariable("image", "UploadFiles/201105/16/150455081625.jpg|UploadFiles/201105/16/150417284750.jpg|UploadFiles/201105/16/150440456625.jpg|UploadFiles/201105/16/150381597250.jpg|");
-      sohuFlash2.addVariable("url", "javascript:void(0);|javascript:void(0);|javascript:void(0);|javascript:void(0);|");
+      sohuFlash2.addVariable("image", "<?php echo $dimg;?>");
+      sohuFlash2.addVariable("url", "<?php echo $durl;?>");
       sohuFlash2.addVariable("info", "||||");
       sohuFlash2.addVariable("stopTime", "5000");
       sohuFlash2.write("sasFlashFocus27");
@@ -84,58 +84,28 @@ src="content/templates/flashobj.js"></SCRIPT>
             style="MARGIN: 10px auto 0px; WIDTH: 215px; HEIGHT: 200px; OVERFLOW: hidden" 
             id=jsweb8_cn_top>
             <DIV id=jsweb8_cn_top1>
+     <?php 
+if (!empty($acvs)):
+foreach($acvs as $value): 
+?>     
             <TABLE style="BORDER-BOTTOM: #ccc 1px dashed; MARGIN-BOTTOM: 10px" 
             border=0 cellSpacing=0 cellPadding=0 width="100%" align=center>
               <TBODY>
               <TR>
                 <TD height=22><IMG alt="" 
                   src="content/templates/images/zyzindex_18.jpg" width=13 height=13> 
-                  <STRONG>大扫除</STRONG></TD></TR>
+                 <a href="<?php echo $value['url']; ?>"><STRONG><?php echo $value['title']; ?></STRONG></a> </TD></TR>
               <TR>
-                <TD height=22>地点：庆发小学</TD></TR>
+                <TD height=22>地点：<?php echo $value['description']; ?></TD></TR>
               <TR>
-                <TD height=22>时间：2013-07-06-2013-07-06</TD></TR>
+                <TD height=22>时间：<?php echo $value['date']; ?></TD></TR>
               <TR>
-                <TD height=22>参加：5 </TD></TR></TBODY></TABLE>
-            <TABLE style="BORDER-BOTTOM: #ccc 1px dashed; MARGIN-BOTTOM: 10px" 
-            border=0 cellSpacing=0 cellPadding=0 width="100%" align=center>
-              <TBODY>
-              <TR>
-                <TD height=22><IMG alt="" 
-                  src="content/templates/images/zyzindex_18.jpg" width=13 height=13> 
-                  <STRONG>国庆志愿者清理楼道小广告</STRONG></TD></TR>
-              <TR>
-                <TD height=22>地点：士课街6号大院</TD></TR>
-              <TR>
-                <TD height=22>时间：2013-07-08-2013-07-08</TD></TR>
-              <TR>
-                <TD height=22>参加：2 </TD></TR></TBODY></TABLE>
-            <TABLE style="BORDER-BOTTOM: #ccc 1px dashed; MARGIN-BOTTOM: 10px" 
-            border=0 cellSpacing=0 cellPadding=0 width="100%" align=center>
-              <TBODY>
-              <TR>
-                <TD height=22><IMG alt="" 
-                  src="content/templates/images/zyzindex_18.jpg" width=13 height=13> 
-                  <STRONG>国庆志愿者清理楼道小广告</STRONG></TD></TR>
-              <TR>
-                <TD height=22>地点：士谭街3号大院</TD></TR>
-              <TR>
-                <TD height=22>时间：2013-07-08-2013-07-08</TD></TR>
-              <TR>
-                <TD height=22>参加：1 </TD></TR></TBODY></TABLE>
-            <TABLE style="BORDER-BOTTOM: #ccc 1px dashed; MARGIN-BOTTOM: 10px" 
-            border=0 cellSpacing=0 cellPadding=0 width="100%" align=center>
-              <TBODY>
-              <TR>
-                <TD height=22><IMG alt="" 
-                  src="content/templates/images/zyzindex_18.jpg" width=13 height=13> 
-                  <STRONG>“绿色环境”志愿服务活动</STRONG></TD></TR>
-              <TR>
-                <TD height=22>地点：红专社区辖区内</TD></TR>
-              <TR>
-                <TD height=22>时间：2013-07-06-2013-07-06</TD></TR>
-              <TR>
-                <TD height=22>参加：30 </TD></TR></TBODY></TABLE></DIV>
+                <TD height=22>参加：<?php echo $value['tbcount']; ?> </TD></TR></TBODY></TABLE>
+     <?php 
+endforeach;
+endif;
+?>      
+</DIV>
             <DIV id=jsweb8_cn_top2></DIV></DIV>
             <SCRIPT>
                 var speed = 60
