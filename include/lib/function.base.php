@@ -705,7 +705,7 @@ function upload_ace($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = 
 		}
 		}
 	}
-	print_r($file_info);
+	//print_r($file_info);
 	return $file_info;
 }
 

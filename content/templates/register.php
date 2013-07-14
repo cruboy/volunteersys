@@ -38,7 +38,7 @@ TD {
                     alert("文件大小不能超过200 KB，请重新选择文件！");
                     return false;
                 }
-                document.forms['form1'].action="?register&up";
+                document.forms['form1'].action="index.php?register&up";
                 return true;
             };
             document.getElementById('reset').onclick = function () {
@@ -115,7 +115,7 @@ TD {
                 $("#agrees").focus();
                 return false;
             }
-            document.forms['form1'].action="?register&rg";
+            document.forms['form1'].action="index.php?register&rg";
             return true;
         }
     </SCRIPT>
@@ -288,44 +288,7 @@ TD {
             <TABLE id=xiehui border=0 cellSpacing=10>
               <TBODY>
               <TR>
-                <TD><INPUT id=xiehui_0 type=checkbox name=xiehui$0><LABEL 
-                  for=xiehui_0>党员</LABEL></TD>
-                <TD><INPUT id=xiehui_1 type=checkbox name=xiehui$1><LABEL 
-                  for=xiehui_1>青少年</LABEL></TD>
-                <TD><INPUT id=xiehui_2 type=checkbox name=xiehui$2><LABEL 
-                  for=xiehui_2>巾帼</LABEL></TD>
-                <TD><INPUT id=xiehui_3 type=checkbox name=xiehui$3><LABEL 
-                  for=xiehui_3>职工</LABEL></TD>
-                <TD><INPUT id=xiehui_4 type=checkbox name=xiehui$4><LABEL 
-                  for=xiehui_4>老年</LABEL></TD>
-                <TD><INPUT id=xiehui_5 type=checkbox name=xiehui$5><LABEL 
-                  for=xiehui_5>红十字</LABEL></TD>
-                <TD><INPUT id=xiehui_6 type=checkbox name=xiehui$6><LABEL 
-                  for=xiehui_6>环保</LABEL></TD>
-                <TD><INPUT id=xiehui_7 type=checkbox name=xiehui$7><LABEL 
-                  for=xiehui_7>法律</LABEL></TD>
-                <TD><INPUT id=xiehui_8 type=checkbox name=xiehui$8><LABEL 
-                  for=xiehui_8>科普</LABEL></TD>
-                <TD><INPUT id=xiehui_9 type=checkbox name=xiehui$9><LABEL 
-                  for=xiehui_9>助残</LABEL></TD>
-                <TD><INPUT id=xiehui_10 type=checkbox name=xiehui$10><LABEL 
-                  for=xiehui_10>消防</LABEL></TD>
-                <TD><INPUT id=xiehui_11 type=checkbox name=xiehui$11><LABEL 
-                  for=xiehui_11>卫生</LABEL></TD></TR>
-              <TR>
-                <TD><INPUT id=xiehui_12 type=checkbox name=xiehui$12><LABEL 
-                  for=xiehui_12>全民健身</LABEL></TD>
-                <TD><INPUT id=xiehui_13 type=checkbox name=xiehui$13><LABEL 
-                  for=xiehui_13>心理健康</LABEL></TD>
-                <TD><INPUT id=xiehui_14 type=checkbox name=xiehui$14><LABEL 
-                  for=xiehui_14>助学</LABEL></TD>
-                <TD><INPUT id=xiehui_15 type=checkbox name=xiehui$15><LABEL 
-                  for=xiehui_15>文明城市</LABEL></TD>
-                <TD><INPUT id=xiehui_16 type=checkbox name=xiehui$16><LABEL 
-                  for=xiehui_16>慈善</LABEL></TD>
-                <TD><INPUT id=xiehui_17 type=checkbox name=xiehui$17><LABEL 
-                  for=xiehui_17>其他</LABEL></TD>
-                <TD></TD>
+            
                 <TD></TD>
                 <TD></TD>
                 <TD></TD>
@@ -409,7 +372,7 @@ $(function() {
 	var city = '<?php echo $city;?>';
     if($("select[name='zone']").val() > 0) 
         {
-         url = "?register/getCity";
+         url = "index.php?register";
         var cities = '<option value="0">请选择</option>';
         $.post(url,{zoneId:$("select[name='zone']").val()},function(data) {
             var obj = eval(data);
@@ -422,7 +385,7 @@ $(function() {
     }
 
     $("select[name='zone']").change(function() {
-        url = "?register/getCity";
+        url = "index.php?register";
         var cities = '<option value="0">请选择</option>';
         $.post(url,{zoneId:$(this).val()},function(data) {
         	//alert(data);
@@ -436,7 +399,7 @@ $(function() {
     });
     var district = '<?php echo $district;?>';
     if(city > 0) {
-        url = "?register/getDistrict";
+        url = "index.php?register";
         var districts = '<option value="0">请选择</option>';
         $.post(url,{cityId:city},function(data) {
             var obj = eval(data);
@@ -449,7 +412,7 @@ $(function() {
     }
 
     $("select[name='city']").change(function() {
-        url = "?register/getDistrict";
+        url = "index.php?register";
         var districts = '<option value="0">请选择</option>';
         $.post(url,{cityId:$(this).val()},function(data) {
             var obj = eval(data);

@@ -47,9 +47,9 @@ width=941 align=center>
             href="?register"><IMG 
             src="content/templates/images/btn003.jpg" width=236 height=37></A></TD></TR>
         <TR>
-          <TD height=37 align=right><A 
+          <!-- TD height=37 align=right><A 
             href="GetPassword" 
-        target=_blank>忘记密码？</A></TD></TR>
+        target=_blank>忘记密码？</A></TD--></TR>
         </TBODY></TABLE>
         </FORM></DIV></TD>
     <TD width=7></TD>
