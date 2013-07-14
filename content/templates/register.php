@@ -18,19 +18,12 @@ TD {
 </STYLE>
 
 <SCRIPT type=text/javascript src="content/templates/images/jquery.js"></SCRIPT>
-<SCRIPT type=text/javascript src="content/templates/images/pback.js"></SCRIPT>
+
 <SCRIPT type=text/javascript>
         $(document).ready(function () {
             $(":text,:file,:password,select").attr('class', 'input02');
-
-            $("#_xiehui_shi").html(unescape($("#_xiehui_shi_v").val()));
-            $("#_xiehui_qu").html(unescape($("#_xiehui_qu_v").val()));
-            $("#_xiehui_jie").html(unescape($("#_xiehui_jie_v").val()));
-            $("#_xiehui_shequ").html(unescape($("#_xiehui_shequ_v").val()));
-           
-
             document.getElementById('_upload').onclick = function () {
-              //  $("#HiddenField11").val(escape($("#_quxian").html()));
+
                   var uploadValue = $("#_file").val();
                if (uploadValue.length == 0)
                     return false;
@@ -45,7 +38,6 @@ TD {
                     alert("文件大小不能超过200 KB，请重新选择文件！");
                     return false;
                 }
-               // javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions("_upload", "", true, "", "", false, false));
                 return true;
             };
             document.getElementById('_reset').onclick = function () {
@@ -116,36 +108,11 @@ TD {
                 $("#_nickName").focus();
                 return false;
             };*/
-            var quxian = $("#_quxian option:selected").val();
-            var shequ = $("#_shequ option:selected").val();
-            var jiedao = $("#_jiedao option:selected").val();
-//            var lst = document.getElementById("_xiehui").getElementsByTagName("input");
-//            var isCheck = false;
-//            if (lst.length > 0)
-//                for (var i = 0; i < lst.length; i++) {
-//                    if (lst[i].checked) {
-//                        isCheck = true;
-//                        break;
-//                    }
-//                }
-//            if (!isCheck) {
-//                return false;
-//            }
-        //    if (quxian == "-2" || shequ == "-2" || jiedao == "-2") {
-       //         if (parseInt($('#_chengshi option:selected').val()) <= 17 || parseInt($('#_chengshi option:selected').val()) >= 19)
-        //            return false;
-        //    }
+
             if (!$("#CheckBox1").attr("checked")) {
                 $("#CheckBox1").focus();
                 return false;
             }
-            $("#HiddenField11").val(escape($("#_quxian").html()));
-            $("#HiddenField12").val(escape($("#_shequ").html()));
-            $("#HiddenField13").val(escape($("#_jiedao").html()));
-            $("#_xiehui_shi_v").val(escape($("#_xiehui_shi").html()));
-            $("#_xiehui_qu_v").val(escape($("#_xiehui_qu").html()));
-            $("#_xiehui_jie_v").val(escape($("#_xiehui_jie").html()));
-            $("#_xiehui_shequ_v").val(escape($("#_xiehui_shequ").html()));
             return true;
         }
     </SCRIPT>
@@ -153,22 +120,6 @@ TD {
 onsubmit="javascript:return WebForm_OnSubmit();" method=post name=form1 
 action="?register">
 
-
-<SCRIPT type=text/javascript>
-//<![CDATA[
-var theForm = document.forms['form1'];
-if (!theForm) {
-    theForm = document.form1;
-}
-function __doPostBack(eventTarget, eventArgument) {
-    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
-        theForm.__EVENTTARGET.value = eventTarget;
-        theForm.__EVENTARGUMENT.value = eventArgument;
-        theForm.submit();
-    }
-}
-//]]>
-</SCRIPT>
 
 
 <SCRIPT type=text/javascript>
@@ -179,8 +130,6 @@ return true;
 }
 //]]>
 </SCRIPT>
-
-<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value=""/>
 
 <TABLE border=0 cellSpacing=0 cellPadding=0 align=center>
   <TBODY>
@@ -449,7 +398,7 @@ return true;
           <TD><INPUT 
             style="BORDER-RIGHT-WIDTH: 0px; WIDTH: 109px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; HEIGHT: 35px; BORDER-LEFT-WIDTH: 0px" 
             id=_submit 
-            onclick='return Check();WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions("_submit", "", true, "", "", false, false))' 
+            onclick='return Check();' 
             src="content/templates/images/register_28.png" type=image name=_submit></TD>
           <TD width=80>&nbsp;</TD>
           <TD><A id=_reset href="?register"><IMG 
@@ -518,19 +467,7 @@ $(function() {
         });
     });
 })
-var Page_ValidationActive = false;
-if (typeof(ValidatorOnLoad) == "function") {
-    ValidatorOnLoad();
-}
 
-function ValidatorOnSubmit() {
-    if (Page_ValidationActive) {
-        return ValidatorCommonOnSubmit();
-    }
-    else {
-        return true;
-    }
-}
         //]]>
 </SCRIPT>
 </FORM> 
