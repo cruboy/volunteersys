@@ -1,9 +1,9 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class=containertitle><b>微语</b>
+<div class=containertitle><b>消息</b>
 <?php if(isset($_GET['active_t'])):?><span class="actived">发布成功</span><?php endif;?>
 <?php if(isset($_GET['active_set'])):?><span class="actived">设置保存成功</span><?php endif;?>
-<?php if(isset($_GET['active_del'])):?><span class="actived">微语删除成功</span><?php endif;?>
-<?php if(isset($_GET['error_a'])):?><span class="error">微语内容不能为空</span><?php endif;?>
+<?php if(isset($_GET['active_del'])):?><span class="actived">消息删除成功</span><?php endif;?>
+<?php if(isset($_GET['error_a'])):?><span class="error">消息内容不能为空</span><?php endif;?>
 </div>
 <div class=line></div>
 <div id="tw">
@@ -51,7 +51,7 @@
     </div>
     </li>
     <?php endforeach;?>
-	 <li class="page"><?php echo $pageurl;?> (有<?php echo $twnum; ?>条微语)</li>
+	 <li class="page"><?php echo $pageurl;?> (有<?php echo $twnum; ?>条消息)</li>
     </ul>
 </div>
 <div id="faceWraps"></div>

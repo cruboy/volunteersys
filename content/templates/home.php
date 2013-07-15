@@ -75,7 +75,7 @@ src="content/templates/flashobj.js"></SCRIPT>
       <TABLE border=0 cellSpacing=0 cellPadding=0>
         <TBODY>
         <TR>
-          <TD><A href="?page=1" target=_blank><IMG 
+          <TD><A href="?page=1" ><IMG 
             alt="" src="content/templates/images/zyzindex_09.jpg" width=226 
             height=42></A></TD></TR>
         <TR>

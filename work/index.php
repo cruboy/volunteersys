@@ -9,7 +9,7 @@ require_once 'globals.php';
 if ($action == '') {
 	$avatar = empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
 	$name =  $user_cache[UID]['name'];
-
+	 if (ROLE == 'admin'):
 	$serverapp = $_SERVER['SERVER_SOFTWARE'];
 	$DB = MySql::getInstance();
 	$mysql_ver = $DB->getMysqlVersion();
@@ -27,7 +27,7 @@ if ($action == '') {
 	} else{
 		$gd_ver = '不支持';
 	}
-
+    endif;
 	include View::getView('header');
 	require_once(View::getView('index'));
 	include View::getView('footer');
