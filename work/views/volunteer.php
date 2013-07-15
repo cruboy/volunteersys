@@ -11,33 +11,35 @@
         <th width="50" class="tdcenter"><b>服务时间</b></th>
         <th width="100"><b>加入时间</b></th>
       </tr>
-    </thead>
+      </thead>
     <tbody>
 	<?php
-	if($pages3):
-	foreach($pages as $key => $value):
-	if (empty($navibar[$value['gid']]['url']))
-	{
-		$navibar[$value['gid']]['url'] = Url::log($value['gid']);
-	}
-?>
+	if($users):
+	foreach($users as $key => $val):
+		$avatar = empty($user_cache[$val['uid']]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[$val['uid']]['avatar'];
+	?>
      <tr>
-     	<td width="21"></td>
-        <td width="440">
-        <a href="/index.php?post=<?php echo $value['gid']?>"><?php echo $value['title']; ?></a> 
-   		    </td>
-        <td class="tdcenter"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
-        <td><?php echo $value['date']; ?></td>
+        <td style="padding:3px; text-align:center;"><img src="<?php echo $avatar; ?>" height="40" width="40" /></td>
+		<td>
+	<a href="./certificate.php?vid=<?php echo $val['uid'];?>">	<?php echo empty($val['name']) ? $val['login'] : $val['name']; ?>
+		</a><?php //echo $val['role'] == 'admin' ? '管理员' : '作者'; ?>
+		</td>
+		<td><?php echo $val['description']; ?></td>
+		
+		<td class="tdcenter"><a href="./servicetime.php?vid=<?php echo $val['uid'];?>">
+		<?php echo $val['xx']; ?>0</a></td>
+		<td><?php echo $val['xx']; ?></td>
      </tr>
 	<?php endforeach;else:?>
-	  <tr><td class="tdcenter" colspan="5">还没有志愿者</td></tr>
+	  <tr><td class="tdcenter" colspan="6">还没有志愿者</td></tr>
 	<?php endif;?>
 	</tbody>
   </table>
+
   <input name="operate" id="operate" value="" type="hidden" />
 
 
-<div class="page"><?php echo $pageurl; ?> (有<?php echo $pageNum; ?>位志愿者)</div>
+<div class="page"><?php echo $pageurl; ?> (有<?php echo $usernum; ?>位志愿者)</div>
 <script>
 $(document).ready(function(){
 	$("#adm_comment_list tbody tr:odd").addClass("tralt_b");

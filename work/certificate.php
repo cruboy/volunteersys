@@ -5,18 +5,20 @@
  */
 
 require_once 'globals.php';
-
+$User_Model = new User_Model();
 //
 if ($action == '') {
-	$emPage = new Log_Model();
+	$vid = isset($_GET['vid']) ? intval($_GET['vid']) : UID;
 
-	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+	$data = $User_Model->getUser($vid);
+	extract($data);
 
-	$pages = $emPage->getLogsForAdmin('', '', $page, 'page');
-	$pageNum = $emPage->getLogNum('','','page', 1);
-
-	$pageurl =  pagination($pageNum, Option::get('admin_perpage_num'), $page, "./page.php?page=");
-
+	$ex1 = $ex2 = '';
+	if ($role == 'writer') {
+		$ex1 = 'selected="selected"';
+	} elseif ($role == 'admin') {
+	 	$ex2 = 'selected="selected"';
+	}
 	include View::getView('header');
 	require_once(View::getView('certificate'));
 	include View::getView('footer');

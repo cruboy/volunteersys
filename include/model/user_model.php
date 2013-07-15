@@ -46,6 +46,12 @@ class User_Model {
 		}
 		return $userData;
 	}
+	function getUser($uid) {
+		$userData = $this->db->once_fetch_array("select * from ".DB_PREFIX."user where uid=$uid");
+	
+		return $userData;
+		
+	}
 
 	function updateUser($userData, $uid) {
 		$Item = array();
