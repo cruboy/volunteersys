@@ -3,7 +3,7 @@
 Template Name:默认模板
 Description:默认模板，简洁优雅 ……
 Version:1.2  <div id="nav"><?php blog_navi();?></div>
-Author:emlog
+Author:emlog<link rel="shortcut icon" href="/favicon.ico"/>
 Author Url:http://www.emlog.net
 Sidebar Amount:1
 ForEmlog:5.1.2
@@ -18,6 +18,7 @@ require_once View::getView('module');
 <title><?php echo $site_title; ?></title>
 <meta name="keywords" content="<?php echo $site_key; ?>" />
 <meta name="description" content="<?php echo $site_description; ?>" />
+<link rel="shortcut icon" href="/favicon.ico"/>
 <link rel="EditURI" type="application/rsd+xml" title="RSD" href="<?php echo BLOG_URL; ?>xmlrpc.php?rsd" />
 <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="<?php echo BLOG_URL; ?>wlwmanifest.xml" />
 <link rel="alternate" type="application/rss+xml" title="RSS"  href="<?php echo BLOG_URL; ?>rss.php" />
