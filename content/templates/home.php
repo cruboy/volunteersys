@@ -9,7 +9,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 
 
 <TABLE style="MARGIN: 0px 0px 10px" border=0 cellSpacing=0 cellPadding=0 
-width=941 align=center>
+width=960 align=center>
   <TBODY>
   <TR>
     <TD height=266 vAlign=top background=content/templates/images/index_05.jpg 
