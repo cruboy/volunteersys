@@ -11,7 +11,8 @@
 <form name="f" method="post" action="./index.php?action=login">
 <div class="login-main">
 	<div class="login-top"></div>
-	<div class="login-logo"><a href="http://www.emlog.net" target="_blank"><img src="./views/images/login_logo.png" alt="emlog" width="294" height="68" /></a></div>
+	<div class="login-logo">
+	<img src="./views/images/login_logo.png"  width="294" height="68" /></div>
 	<small><?php echo Option::EMLOG_VERSION; ?></small>
 	<div class="login-input">
 		<span>用户名</span>

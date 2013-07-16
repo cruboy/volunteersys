@@ -49,7 +49,8 @@ TD {
                   <DIV class=xp><IMG 
                   style="BORDER-RIGHT-WIDTH: 0px; WIDTH: 149px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; HEIGHT: 207px; BORDER-LEFT-WIDTH: 0px" 
                   id=ctl00_ContentPlaceHolder1__zhaopian 
-                  src="./views/images/avatar.jpg"></DIV></DIV>
+                  src="<?php if(empty($photo)) echo "./views/images/avatar.jpg";else 
+                  echo $photo;?>"></DIV></DIV>
                   </TD></TR></TBODY>
                   </TABLE></TD></TR>
                   </TBODY></TABLE> 

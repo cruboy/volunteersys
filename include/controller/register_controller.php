@@ -26,6 +26,7 @@ else $onedit=false;
 if(isset($_GET['rg'])&&!empty($_POST['xingming'])){
 	$User_Model = new User_Model();
 	$rets=$User_Model->regUser(($_POST));
+	$CACHE->updateCache('user');
 		emMsg('注册成功！非常感谢！请登录', '/');
 		exit;
 }
