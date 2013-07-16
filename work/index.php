@@ -28,6 +28,15 @@ if ($action == '') {
 		$gd_ver = '不支持';
 	}
     endif;
+    $emPage = new Log_Model();
+
+	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+
+	$pages = $emPage->getLogsForAdmin('', '', $page, 'blog');
+	$pageNum = $emPage->getLogNum('','','blog', 1);
+
+	$pageurl =  pagination($pageNum, Option::get('admin_perpage_num'), $page, "./page.php?page=");
+    
 	include View::getView('header');
 	require_once(View::getView('index'));
 	include View::getView('footer');

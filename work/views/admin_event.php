@@ -6,7 +6,7 @@
 <?php if(isset($_GET['active_pubpage'])):?><span class="actived">活动保存成功</span><?php endif;?>
 </div>
 <div class=line></div>
-<form action="page.php?action=operate_page" method="post" name="form_page" id="form_page">
+<form action="event.php?action=operate_page" method="post" name="form_page" id="form_page">
   <table width="100%" id="adm_comment_list" class="item_list">
   	<thead>
       <tr>
@@ -30,7 +30,7 @@
      <tr>
      	<td width="21"><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
         <td width="440">
-        <a href="page.php?action=mod&id=<?php echo $value['gid']?>"><?php echo $value['title']; ?></a> 
+        <a href="event.php?action=mod&id=<?php echo $value['gid']?>"><?php echo $value['title']; ?></a> 
    		<?php echo $isHide; ?>    
 		<?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="附件：<?php echo $value['attnum']; ?>" /><?php endif; ?>
         </td>

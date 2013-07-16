@@ -3,7 +3,7 @@
 <script charset="utf-8" src="./editor/lang/zh_CN.js"></script>
 <div class=containertitle><b>新建活动</b><span id="msg_2"></span></div>
 <div id="msg"></div>
-<form action="page.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
+<form action="event.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
 <div id="post">
 <div>
     <label for="title" id="title_label">输入活动标题</label>

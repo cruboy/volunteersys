@@ -19,9 +19,11 @@
 		$avatar = empty($user_cache[$val['uid']]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[$val['uid']]['avatar'];
 	?>
      <tr>
-        <td style="padding:3px; text-align:center;"><img src="<?php echo $avatar; ?>" height="40" width="40" /></td>
+        <td style="padding:3px; text-align:center;">
+        <a href="./certificate.php?vid=<?php echo $val['uid'];?>">
+        <img src="<?php echo $avatar; ?>" height="40" width="40" /></a></td>
 		<td>
-	<a href="./certificate.php?vid=<?php echo $val['uid'];?>">	<?php echo empty($val['name']) ? $val['login'] : $val['name']; ?>
+	<a href="./register.php?vid=<?php echo $val['uid'];?>">	<?php echo empty($val['name']) ? $val['login'] : $val['name']; ?>
 		</a><?php //echo $val['role'] == 'admin' ? '管理员' : '作者'; ?>
 		</td>
 		<td><?php echo $val['description']; ?></td>

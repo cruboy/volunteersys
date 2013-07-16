@@ -28,7 +28,7 @@
         <td><?php echo $value['date']; ?></td>
      </tr>
 	<?php endforeach;else:?>
-	  <tr><td class="tdcenter" colspan="4">还没有页面</td></tr>
+	  <tr><td class="tdcenter" colspan="4">还没有活动</td></tr>
 	<?php endif;?>
 	</tbody>
   </table>

@@ -140,11 +140,14 @@ TD {
         <TR>
           <TD height=50 
             align=middle>本人自愿成为志愿者，遵守国家法律和志愿服务章程，为弘扬志愿服务精神，推动志愿服务尽一份力量。<BR><BR>
-           <BR><BR></TD></TR></TBODY></TABLE>
+           </TD></TR></TBODY></TABLE>
   
             </TD></TR>
             </TBODY></TABLE>
-
+<?php if($uid==UID):?>
+<div align=center><a href="/">修改注册信息</a></div>
+<?php endif;?>
+<br><br>
 <SCRIPT type=text/javascript>
 $("#menu_register").addClass('sidebarsubmenu1');
 </SCRIPT>

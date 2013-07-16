@@ -101,7 +101,7 @@ class Log_Controller {
 			$tb = $Trackback_Model->getTrackbacks(null, $logid, 0);
 			$tb_url = BLOG_URL . 'tb.php?sc=' . $tbscode . '&id=' . $logid; 
 			include View::getView('echo_log');
-		}elseif ($type == 'page') {
+		}else {//if ($type == 'page')
 			include View::getView('page');
 		}
 	}

@@ -12,8 +12,8 @@ if ($action == '') {
 
 	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
-	$pages = $emPage->getLogsForAdmin('', '', $page, 'page');
-	$pageNum = $emPage->getLogNum('','','page', 1);
+	$pages = $emPage->getLogsForAdmin('', '', $page, 'event');
+	$pageNum = $emPage->getLogNum('','','event', 1);
 
 	$pageurl =  pagination($pageNum, Option::get('admin_perpage_num'), $page, "./page.php?page=");
 
@@ -28,8 +28,8 @@ if ($action == 'admin') {
 
 	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
-	$pages = $emPage->getLogsForAdmin('', '', $page, 'page');
-	$pageNum = $emPage->getLogNum('','','page', 1);
+	$pages = $emPage->getLogsForAdmin('', '', $page, 'event');
+	$pageNum = $emPage->getLogNum('','','event', 1);
 
 	$pageurl =  pagination($pageNum, Option::get('admin_perpage_num'), $page, "./page.php?page=");
 
@@ -92,7 +92,7 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
 	'allow_remark'=>$allow_remark,
 	'hide'=>$ishide,
 	'alias'=>$alias,
-	'type'=>'page'
+	'type'=>'event'
 	);
 
 	if ($pageId > 0) {//自动保存后,添加变为更新
@@ -110,9 +110,9 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
 		case 'add':
 		case 'edit':
 			if ($action == 'add') {
-				emDirect("./page.php?active_hide_n=1");//活动发布成功
+				emDirect("./event.php?action=admin&active_hide_n=1");//活动发布成功
 			} else {
-				emDirect("./page.php?active_savepage=1");//活动保存成功
+				emDirect("./event.php?action=admin&active_savepage=1");//活动保存成功
 			}
 			break;
 	}
@@ -134,7 +134,7 @@ if ($action == 'operate_page') {
 			Option::updateOption('navibar', $navibar);
 			$CACHE->updateCache(array('options', 'sta', 'comment', 'logalias'));
 
-			emDirect("./page.php?active_del=1");
+			emDirect("./event.php?action=admin&active_del=1");
 			break;
 		case 'hide':
 		case 'pub':
@@ -146,7 +146,7 @@ if ($action == 'operate_page') {
 			$navibar = addslashes(serialize($navibar));
 			Option::updateOption('navibar', $navibar);
 			$CACHE->updateCache(array('options', 'sta', 'comment'));
-			emDirect("./page.php?active_hide_".$ishide."=1");
+			emDirect("./event.php?action=admin&active_hide_".$ishide."=1");
 			break;
 	}
 }

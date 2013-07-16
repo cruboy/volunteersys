@@ -27,7 +27,7 @@ order by aid desc limit 4";
 				$durl=$durl."?post=".$row['blogid']."|";
 			}
     $sql3 = "SELECT * FROM ".DB_PREFIX."blog 
-    where type='blog' and sortid=1 and hide='n' 
+    where type='event' and hide='n' 
 order by gid desc limit 8";
 			$res= $DB->query($sql3);
 			while ($row=$DB->fetch_array($res)){
