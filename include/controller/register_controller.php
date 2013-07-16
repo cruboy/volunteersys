@@ -36,12 +36,20 @@ $usericon = "content/templates/images/nopic.jpg";
 $gip=getIp();   
 $uid=UID;
 $DB = MySql::getInstance();
+    if(isset($_GET['edit'])&& $uid>0 && $uid==$_GET['edit']){
+	$User_Model = new User_Model();
+		$data = $User_Model->getUser($uid);
+	extract($data);
+	$onedit=true;
+}
+else $onedit=false;
 if(isset($_GET['rg'])&&!empty($_POST['xingming'])){
 	$User_Model = new User_Model();
 	$rets=$User_Model->regUser(($_POST));
 		emMsg('注册成功！非常感谢！请登录', '/');
 		exit;
 }
+
     if(isset($_GET['name'])){
 	$User_Model = new User_Model();
 	$rets=$User_Model->isUserExist(addslashes(trim($_GET['name'])));

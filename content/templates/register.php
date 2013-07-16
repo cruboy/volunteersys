@@ -173,19 +173,19 @@ TD {
               <TR>
                 <TD class=f_b_01 bgColor=#ecf5ff height=35 align=right>登录名：</TD>
                 <TD bgColor=#ecf5ff><INPUT style="WIDTH: 180px" id=username 
-                  maxLength=10 type=text name=username> <SPAN 
+                  maxLength=10 type=text name=username value="<?php echo $username; ?>"> <SPAN 
                   style="DISPLAY: none; COLOR: red" 
                   id=RequiredFieldValidator3></SPAN><SPAN 
                   style="COLOR: red">*</SPAN></TD>
                 <TD class=f_b_01 bgColor=#ecf5ff align=right>登录密码：</TD>
                 <TD bgColor=#ecf5ff><INPUT style="WIDTH: 106px; HEIGHT: 20px" 
-                  id=password maxLength=20 type=password name=password> <SPAN 
+                  id=password maxLength=20 type=password name=password value="<?php echo $password; ?>"> <SPAN 
                   style="DISPLAY: none; COLOR: red" 
                   id=RequiredFieldValidator4></SPAN><SPAN 
                   style="COLOR: red">*6-16位</SPAN></TD>
                 <TD class=f_b_01 bgColor=#ecf5ff align=right>重复密码：</TD>
                 <TD bgColor=#ecf5ff><INPUT style="WIDTH: 106px; HEIGHT: 20px" 
-                  id=password2 maxLength=20 type=password name=password2> 
+                  id=password2 maxLength=20 type=password name=password2 value="<?php echo $password2; ?>"> 
                   <SPAN style="DISPLAY: none; COLOR: red" 
                   id=RequiredFieldValidator5></SPAN><SPAN 
                   style="DISPLAY: none; COLOR: red" 
@@ -194,7 +194,7 @@ TD {
               <TR>
                 <TD height=35 align=right>姓名：</TD>
                 <TD><INPUT style="WIDTH: 180px" id=xingming maxLength=8 
-                  type=text name=xingming> <SPAN 
+                  type=text name=xingming value="<?php echo $xingming; ?>"> <SPAN 
                   style="DISPLAY: none; COLOR: red" 
                   id=RequiredFieldValidator1></SPAN><SPAN 
                   style="COLOR: red">*</SPAN></TD>
@@ -204,20 +204,23 @@ TD {
                   style="MARGIN-LEFT: 10px"><INPUT id=xingbie2 value='女' 
                   type=radio name=xingbie><LABEL 
                 for=xingbie2>女</LABEL></SPAN></TD>
-                <TD align=right>政治面貌：</TD>
-                <TD><SELECT style="WIDTH: 106px" id=zhengzhimianmao 
-                  name=zhengzhimianmao> <OPTION selected 
-                    value=-1>请选择</OPTION> <OPTION value=1>团员</OPTION> <OPTION 
-                    value=2>党员</OPTION> <OPTION value=3>群众</OPTION> <OPTION 
-                    value=4>其他党派人士</OPTION></SELECT> <SPAN 
-                  style="COLOR: red">*</SPAN></TD></TR>
+                <TD align=right>生日：</TD>
+                <TD><INPUT style="WIDTH: 106px" id=zhiji maxLength=20 
+                  type=text name=zhiji value="<?php echo $zhiji; ?>"></TD></TR>
               <TR>
                 <TD height=35 align=right>所在单位：</TD>
                 <TD colSpan=3><INPUT style="WIDTH: 428px" id=danwei 
-                  maxLength=50 type=text name=danwei></TD>
-                <TD align=right>职级：</TD>
-                <TD><INPUT style="WIDTH: 106px" id=zhiji maxLength=20 
-                  type=text name=zhiji></TD></TR>
+                  maxLength=50 type=text name=danwei value="<?php echo $danwei; ?>"></TD>
+                <TD align=right>政治面貌：</TD>
+                <TD><SELECT style="WIDTH: 106px" id=zhengzhimianmao 
+                  name=zhengzhimianmao>
+<OPTION <?php if($zhengzhimianmao==""){?>selected="selected"<?php }?>  value="">请选择</OPTION> 
+<OPTION <?php if($zhengzhimianmao=="团员"){?>selected="selected"<?php }?> value="团员"> 团员</OPTION> 
+<OPTION <?php if($zhengzhimianmao=="党员"){?>selected="selected"<?php }?> value="党员">党员</OPTION> 
+<OPTION <?php if($zhengzhimianmao=="群众"){?>selected="selected"<?php }?> value="群众">群众</OPTION> 
+<OPTION <?php if($zhengzhimianmao=="其他党派"){?>selected="selected"<?php }?> value="其他党派">其他党派</OPTION>
+</SELECT> <SPAN 
+                  style="COLOR: red">*</SPAN></TD></TR>
               <TR>
                 <TD bgColor=#f7f7f7 height=35 align=right>所在地区：</TD>
                 <TD bgColor=#f7f7f7 colSpan=5>
@@ -245,7 +248,7 @@ TD {
                   style="COLOR: red">*</SPAN> </TD>
                 <TD align=right>专业：</TD>
                 <TD><INPUT style="WIDTH: 106px" id=zhuanye type=text 
-                  name=zhuanye></TD>
+                  name=zhuanye value="<?php echo $zhuanye ;?> " ></TD>
                 <TD align=right>学历：</TD>
                 <TD><SELECT style="WIDTH: 106px" id=xueli name=xueli> 
                     <OPTION selected value=-1>请选择</OPTION> <OPTION 
@@ -258,21 +261,19 @@ TD {
               <TR>
                 <TD height=35 align=right>毕业或就&nbsp;&nbsp;<BR>读院校： </TD>
                 <TD colSpan=5><INPUT style="WIDTH: 428px" id=biyeyuanxiao 
-                  maxLength=40 type=text name=biyeyuanxiao></TD></TR>
+                  maxLength=40 type=text name=biyeyuanxiao value="<?php echo $biyeyuanxiao ;?>"></TD></TR>
               <TR>
                 <TD height=35 align=right>特长爱好： </TD>
                 <TD colSpan=5><INPUT style="WIDTH: 428px" id=techang 
-                  maxLength=40 type=text name=techang></TD></TR>
+                  maxLength=40 type=text name=techang value="<?php echo $techang ;?>"></TD></TR>
               <TR>
                 <TD height=35 align=right>身份证号：</TD>
-                <TD colSpan=5><SELECT id=zheng name=zheng> 
-                    <OPTION selected value=1>身份证</OPTION> <OPTION 
-                    value=2>学生证号</OPTION> <OPTION value=3>其他证件</OPTION></SELECT> 
+                <TD colSpan=5>
                   <INPUT style="WIDTH: 428px" id=shenfenzheng maxLength=19 
-                  type=text name=shenfenzheng> <SPAN 
+                  type=text name=shenfenzheng value="<?php echo $shenfenzheng ;?>"> <SPAN 
                   style="DISPLAY: none; COLOR: red" 
                   id=RequiredFieldValidator2></SPAN><SPAN 
-                  style="COLOR: red">*<BR>注：无身份证则填入其它证件号。
+                  style="COLOR: red">*
                   </SPAN></TD></TR>
                   </TBODY></TABLE></TD></TR>
                   </TBODY></TABLE></TD></TR>
@@ -281,7 +282,7 @@ TD {
       height=33></TD></TR>
   <TR>
     <TD>
-      <TABLE border=0 cellSpacing=0 cellPadding=0 align=center>
+      <TABLE border=0 cellSpacing=0 cellPadding=0 align=left>
         <TBODY>
         <TR>
           <TD height=80>
@@ -289,7 +290,7 @@ TD {
               <TBODY>
               <TR>
             
-                <TD></TD>
+                <TD>爱心之声公益社</TD>
                 <TD></TD>
                 <TD></TD>
                 <TD></TD>
@@ -308,33 +309,33 @@ TD {
         <TR>
           <TD height=35>手机号码：</TD>
           <TD><INPUT style="WIDTH: 300px" id=shouji maxLength=40 type=text 
-            name=shouji> <SPAN style="DISPLAY: none; COLOR: red" 
+            name=shouji value="<?php echo $shouji ;?>"> <SPAN style="DISPLAY: none; COLOR: red" 
             id=CustomValidator1></SPAN><SPAN 
             style="COLOR: red">*与固话至少填写其中一项</SPAN></TD>
           <TD>电子邮箱：</TD>
           <TD><INPUT style="WIDTH: 200px" id=email maxLength=20 type=text 
-            name=email></TD></TR>
+            name=email value="<?php echo $email ;?>"></TD></TR>
         <TR>
           <TD height=35>固定电话：</TD>
           <TD><INPUT style="WIDTH: 300px" id=guhua maxLength=20 type=text 
-            name=guhua></TD>
+            name=guhua value="<?php echo $guhua ;?>"></TD>
           <TD>QQ 号码：</TD>
           <TD><INPUT style="WIDTH: 200px" id=QQ maxLength=10 type=text 
-            name=QQ></TD></TR>
+            name=QQ value="<?php echo $QQ ;?>"></TD></TR>
         <TR>
           <TD height=35>单位地址：</TD>
           <TD><INPUT style="WIDTH: 300px" id=danweidizhi maxLength=50 
-            type=text name=danweidizhi></TD>
+            type=text name=danweidizhi value="<?php echo $danweidizhi ;?>"></TD>
           <TD>邮政编码：</TD>
           <TD><INPUT style="WIDTH: 200px" id=danweiyoubian maxLength=10 
-            type=text name=danweiyoubian></TD></TR>
+            type=text name=danweiyoubian value="<?php echo $danweiyoubian ;?>"></TD></TR>
         <TR>
           <TD height=35>家庭住址：</TD>
           <TD><INPUT style="WIDTH: 300px" id=jiatingzhuzhi maxLength=50 
-            type=text name=jiatingzhuzhi></TD>
+            type=text name=jiatingzhuzhi value="<?php echo $jiatingzhuzhi ;?>"></TD>
           <TD>邮政编码：</TD>
           <TD><INPUT style="WIDTH: 200px" id=jiatingyoubian maxLength=10 
-            type=text name=jiatingyoubian></TD></TR></TBODY></TABLE></TD></TR>
+            type=text name=jiatingyoubian value="<?php echo $jiatingyoubian ;?>"></TD></TR></TBODY></TABLE></TD></TR>
   <TR>
     <TD><IMG alt="" src="content/templates/images/register_25.png" width=939 
       height=33></TD></TR>

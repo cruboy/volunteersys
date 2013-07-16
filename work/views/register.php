@@ -145,7 +145,7 @@ TD {
             </TD></TR>
             </TBODY></TABLE>
 <?php if($uid==UID):?>
-<div align=center><a href="/">修改注册信息</a></div>
+<div align=center><a href="/index.php?register&edit=<?php echo $uid;?>">修改注册信息</a></div>
 <?php endif;?>
 <br><br>
 <SCRIPT type=text/javascript>
