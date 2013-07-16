@@ -5,18 +5,12 @@
  */
 
 require_once 'globals.php';
-
+$User_Model = new User_Model();
 //
 if ($action == '') {
-	$emPage = new Log_Model();
-
-	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
-
-	$pages = $emPage->getLogsForAdmin('', '', $page, 'page');
-	$pageNum = $emPage->getLogNum('','','page', 1);
-
-	$pageurl =  pagination($pageNum, Option::get('admin_perpage_num'), $page, "./page.php?page=");
-
+	$vid = isset($_GET['vid']) ? intval($_GET['vid']) : UID;
+	$data = $User_Model->getUser($vid);
+	extract($data);
 	include View::getView('header');
 	require_once(View::getView('register'));
 	include View::getView('footer');

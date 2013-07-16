@@ -28,7 +28,7 @@
     <?php echo subString($user_cache[UID]['name'], 0, 12) ?>,您好！
      <li class="sidebarsubmenu" id="menu_index"><a href="index.php">信息中心</a></li>
         <li class="sidebarsubmenu" id="menu_certificate"><a href="certificate.php">查看证书</a></li>
-      <li class="sidebarsubmenu" id="menu_register"><a href="register.php">修改注册信息</a></li>
+      <li class="sidebarsubmenu" id="menu_register"><a href="register.php">查看注册信息</a></li>
        <li class="sidebarsubmenu" id="menu_servicetime"><a href="servicetime.php">服务时间统计</a></li>
      <li class="sidebarsubmenu" id="menu_volunteer"><a href="volunteer.php">志愿者列表</a></li>
     

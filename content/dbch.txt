@@ -36,4 +36,10 @@ ALTER TABLE `vo_user` ADD `danweiyoubian` VARCHAR( 100 ) NOT NULL DEFAULT '';
 ALTER TABLE `vo_user` ADD `jiatingzhuzhi` VARCHAR( 100 ) NOT NULL DEFAULT '';
 ALTER TABLE `vo_user` ADD `jiatingyoubian` VARCHAR( 100 ) NOT NULL DEFAULT '';
 ALTER TABLE `vo_user` ADD `xiehui` VARCHAR( 300 ) NOT NULL DEFAULT '';
-ALTER TABLE `vo_user` ADD `` VARCHAR( 100 ) NOT NULL DEFAULT '';
+
+ALTER TABLE `vo_user` ADD `uip` VARCHAR( 40 ) NOT NULL DEFAULT '';
+ALTER TABLE `vo_user` ADD `regdate` bigint(20) NOT NULL DEFAULT 0;
+ALTER TABLE `vo_user` ADD `lastdate` bigint(20) NOT NULL DEFAULT 0;
+
+
+

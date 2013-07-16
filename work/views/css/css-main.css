@@ -19,9 +19,9 @@ body {
 	width:960px;
 }
 #container {
-	padding-left:30px;
+	padding-left:0px;
 	float:left;
-	width:810px;
+	width:846px;
 }
 #footer{
 	clear:both;

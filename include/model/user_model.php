@@ -69,8 +69,10 @@ class User_Model {
 	
 	function regUser($regDate) {
 		$PHPASS = new PasswordHash(8, true);
-		$newpass = $PHPASS->HashPassword($regDate['password']);
+		$newpass = $PHPASS->HashPassword(trim($regDate['password']));
 		//print_r($regDate);
+		$gip=getIp();   
+		$ltime=time();
 		$a="";
 			$kItem = array();
 		$dItem = array();
@@ -88,7 +90,8 @@ class User_Model {
 		}
 		$field = implode(',', $kItem);
 		$values = "'" . implode("','", $dItem) . "'";
-		$sql="insert into ".DB_PREFIX."user ($field,role,xiehui,password) values($values,'writer','$a','$newpass')";
+$sql="insert into ".DB_PREFIX."user ($field,nickname,role,xiehui,password,uip,regdate,lastdate) values($values,'".
+	addslashes(trim($regDate['xingming'])) ."','writer','$a','$newpass','$gip','$ltime','$ltime')";
 		$this->db->query($sql);
 	}
 

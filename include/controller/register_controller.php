@@ -36,7 +36,7 @@ $usericon = "content/templates/images/nopic.jpg";
 $gip=getIp();   
 $uid=UID;
 $DB = MySql::getInstance();
-if(isset($_GET['rg'])){
+if(isset($_GET['rg'])&&!empty($_POST['xingming'])){
 	$User_Model = new User_Model();
 	$rets=$User_Model->regUser(($_POST));
 		emMsg('注册成功！非常感谢！请登录', '/');

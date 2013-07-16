@@ -30,8 +30,7 @@ TD {
      <TABLE class=border01 border=0 cellSpacing=0 cellPadding=0 align=center>
         <TBODY>
         <TR>
-          <TD><IMG alt="" src="./views/images/zyzzt.jpg" width=729 
-        height=33></TD></TR>
+          <TD></TD></TR>
         <TR>
           <TD 
           style="PADDING-BOTTOM: 50px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 50px">
