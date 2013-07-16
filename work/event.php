@@ -12,7 +12,7 @@ if ($action == '') {
 
 	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
-	$pages = $emPage->getLogsForAdmin('', '', $page, 'event');
+	$pages = $emPage->getEventsForHome('', $page, Option::get('admin_perpage_num'));
 	$pageNum = $emPage->getLogNum('','','event', 1);
 
 	$pageurl =  pagination($pageNum, Option::get('admin_perpage_num'), $page, "./page.php?page=");

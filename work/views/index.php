@@ -48,7 +48,7 @@
         <a href="/index.php?post=<?php echo $value['gid']?>"><?php echo $value['title']; ?></a> 
    		    </td>
         <td class="tdcenter"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
-        <td><?php echo $value['date']; ?></td>
+        <td><?php echo gmdate('Y-n-j G:i l', $value['date']); ?></td>
      </tr>
 	<?php endforeach;else:?>
 	  <tr><td class="tdcenter" colspan="4">还没有信息</td></tr>
