@@ -1,13 +1,8 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class="containertitle2">
-<?php if (ROLE == 'admin'):?>
-<a class="navi1" href="./configure.php">基本设置</a>
-<a class="navi4" href="./seo.php">SEO设置</a>
-<a class="navi4" href="./style.php">后台风格</a>
-<a class="navi2" href="./blogger.php">个人设置</a>
-<?php else:?>
-<a class="navi1" href="./blogger.php">个人设置</a>
-<?php endif;?>
+
+个人设置
+
 <?php if(isset($_GET['active_edit'])):?><span class="actived">个人资料修改成功</span><?php endif;?>
 <?php if(isset($_GET['active_del'])):?><span class="actived">头像删除成功</span><?php endif;?>
 <?php if(isset($_GET['error_a'])):?><span class="error">昵称不能太长</span><?php endif;?>

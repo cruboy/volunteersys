@@ -19,10 +19,10 @@ TD {
 
 <SCRIPT type=text/javascript src="content/templates/images/jquery.js"></SCRIPT>
 
-<SCRIPT type=text/javascript>
+<SCRIPT type=text/javascript><?php if(!$onedit):?>   
         $(document).ready(function () {
             $(":text,:file,:password,select").attr('class', 'input02');
-            
+         
             document.getElementById('uploadp').onclick = function () {
                   var uploadValue = $("#filepo").val();
                if (uploadValue.length == 0)
@@ -45,7 +45,8 @@ TD {
                 document.forms['form1'].reset();
          
             };
-        });
+           
+        }); <?php endif;?>  
         function PhoneValidate(sender, args) { args.IsValid = ($("#shouji").val().length > 0 || $("#guhua").val().length > 0); }
         function AreaValidate(sender, args) { args.IsValid = (args.Value != "-2"); }
         function success() { alert('恭喜您，注册成功！'); window.location.href = '/'; }
@@ -81,6 +82,7 @@ TD {
         }
 
         function Check() {
+        	<?php if(!$onedit):?>  
              if ($.ajax({
             type: "GET",
             url: "?register",
@@ -93,8 +95,11 @@ TD {
             return false;
         };
             if (!JCheck($("#username")) || !JCheck($("#password")) || 
-                    !CheckLength() || !Comp($("#password"), $("#password2")) 
-                    || !JCheck($("#xingming")) || !JCheck($("#shenfenzheng"))
+                    !CheckLength() || !Comp($("#password"), $("#password2")) )
+            	  return false;
+            <?php endif;?>  
+        	  
+            if ( !JCheck($("#xingming")) || !JCheck($("#shenfenzheng"))
                      || (!JCheck($("#guhua")) && !JCheck($("#shouji"))))
                 return false;
             if ($("#zhengzhimianmao option:selected").val() == "-1") {
@@ -115,13 +120,11 @@ TD {
                 $("#agrees").focus();
                 return false;
             }
-            document.forms['form1'].action="index.php?register&rg";
+            document.forms['form1'].action="index.php?register&rg<?php if($onedit)echo 'edit'; echo "=".$vcode;?>";
             return true;
         }
     </SCRIPT>
-   <FORM id=form1 encType=multipart/form-data 
- method=post name=form1 
->
+   <FORM id=form1 encType=multipart/form-data  method=post name=form1 >
 
 <TABLE border=0 cellSpacing=0 cellPadding=0 align=center>
   <TBODY>
@@ -147,6 +150,17 @@ TD {
                   style="BORDER-RIGHT-WIDTH: 0px; WIDTH: 138px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; HEIGHT: 176px; BORDER-LEFT-WIDTH: 0px" 
                   id=photos class=border01 
               src="<?php echo $usericon;?>"></TD></TR>
+             <?php if($onedit):?>
+             </TBODY></TABLE></TD>
+          <TD width=10>&nbsp;</TD>
+          <TD>
+           <TABLE border=0 cellSpacing=0 cellPadding=0 width=750 align=right>
+              <TBODY>
+               <TR>
+                <TD class=f_b_01 bgColor=#ecf5ff height=35 align=right>登录名：</TD>
+               <TD bgColor=#ecf5ff> <?php echo $username; ?> <a href="/work/blogger.php">修改照片和密码</a>
+              </TD>  </TR>
+             <?php else:?>
               <TR>
                 <TD height=8 align=middle></TD></TR>
               <TR>
@@ -191,6 +205,8 @@ TD {
                   style="DISPLAY: none; COLOR: red" 
                   id=CompareValidator1></SPAN><SPAN 
                 style="COLOR: red">*</SPAN></TD></TR>
+                
+            <?php endif;?>    
               <TR>
                 <TD height=35 align=right>姓名：</TD>
                 <TD><INPUT style="WIDTH: 180px" id=xingming maxLength=8 
@@ -199,9 +215,9 @@ TD {
                   id=RequiredFieldValidator1></SPAN><SPAN 
                   style="COLOR: red">*</SPAN></TD>
                 <TD align=right>性别：</TD>
-                <TD><INPUT id=xingbie1 value='男'  CHECKED type=radio 
+                <TD><INPUT id=xingbie1 value='男'  <?php if($xingbie=="男")echo 'checked';?> type=radio 
                   name=xingbie><LABEL for=xingbie1>男</LABEL><SPAN 
-                  style="MARGIN-LEFT: 10px"><INPUT id=xingbie2 value='女' 
+                  style="MARGIN-LEFT: 10px"><INPUT id=xingbie2 value='女'  <?php if($xingbie=="女")echo 'checked';?>
                   type=radio name=xingbie><LABEL 
                 for=xingbie2>女</LABEL></SPAN></TD>
                 <TD align=right>生日：</TD>
@@ -241,22 +257,32 @@ TD {
               <TR>
                 <TD height=35 align=right>社会职业：</TD>
                 <TD><SELECT style="WIDTH: 106px" id=shenfen name=shenfen> 
-                    <OPTION selected value=-1>请选择</OPTION> <OPTION 
-                    value=1>行政</OPTION> <OPTION value=2>事业</OPTION> <OPTION 
-                    value=3>企业</OPTION> <OPTION value=4>农业</OPTION> <OPTION 
-                    value=5>学生</OPTION> <OPTION value=6>其他</OPTION></SELECT><SPAN 
+<OPTION <?php if($shenfen==""){?>selected="selected"<?php }?>  value="">请选择</OPTION>
+<OPTION <?php if($shenfen=="行政"){?>selected="selected"<?php }?>  value="行政">行政</OPTION> 
+<OPTION <?php if($shenfen=="事业"){?>selected="selected"<?php }?>  value="事业">事业</OPTION> 
+<OPTION <?php if($shenfen=="企业"){?>selected="selected"<?php }?>  value="企业">企业</OPTION> 
+<OPTION <?php if($shenfen=="农业"){?>selected="selected"<?php }?>  value="农业">农业</OPTION> 
+<OPTION <?php if($shenfen=="学生"){?>selected="selected"<?php }?>  value="学生">学生</OPTION> 
+<OPTION <?php if($shenfen=="其他"){?>selected="selected"<?php }?>  value="">其他</OPTION>
+</SELECT><SPAN 
                   style="COLOR: red">*</SPAN> </TD>
                 <TD align=right>专业：</TD>
                 <TD><INPUT style="WIDTH: 106px" id=zhuanye type=text 
                   name=zhuanye value="<?php echo $zhuanye ;?> " ></TD>
                 <TD align=right>学历：</TD>
                 <TD><SELECT style="WIDTH: 106px" id=xueli name=xueli> 
-                    <OPTION selected value=-1>请选择</OPTION> <OPTION 
-                    value=1>小学</OPTION> <OPTION value=2>初中</OPTION> <OPTION 
-                    value=3>高中</OPTION> <OPTION value=4>中专</OPTION> <OPTION 
-                    value=5>本科</OPTION> <OPTION value=6>专科</OPTION> <OPTION 
-                    value=7>硕士</OPTION> <OPTION value=8>博士</OPTION> <OPTION 
-                    value=9>技校</OPTION></SELECT> <SPAN 
+<OPTION <?php if($xueli==""){?>selected="selected"<?php }?>  value="">请选择</OPTION>
+<OPTION <?php if($xueli=="小学"){?>selected="selected"<?php }?>  value="小学">小学</OPTION> 
+<OPTION <?php if($xueli=="初中"){?>selected="selected"<?php }?>  value="初中">初中</OPTION> 
+<OPTION <?php if($xueli=="高中"){?>selected="selected"<?php }?>  value="高中">高中</OPTION>
+<OPTION <?php if($xueli=="中专"){?>selected="selected"<?php }?>  value="中专">中专</OPTION> 
+<OPTION <?php if($xueli=="技校"){?>selected="selected"<?php }?>  value="技校">技校</OPTION>
+<OPTION <?php if($xueli=="专科"){?>selected="selected"<?php }?>  value="专科">专科</OPTION> 
+<OPTION <?php if($xueli=="本科"){?>selected="selected"<?php }?>  value="本科">本科</OPTION> 
+<OPTION <?php if($xueli=="硕士"){?>selected="selected"<?php }?>  value="硕士">硕士</OPTION> 
+<OPTION <?php if($xueli=="博士"){?>selected="selected"<?php }?>  value="博士">博士</OPTION> 
+
+                    </SELECT> <SPAN 
                 style="COLOR: red">*</SPAN></TD></TR>
               <TR>
                 <TD height=35 align=right>毕业或就&nbsp;&nbsp;<BR>读院校： </TD>
@@ -348,7 +374,7 @@ TD {
           <TD height=50 
             align=middle>本人自愿成为志愿者，遵守国家法律和志愿服务章程，为弘扬志愿服务精神，推动志愿服务尽一份力量。<BR><BR><INPUT 
             id=agrees type=checkbox 
-        name=agrees>同意以上陈述。<BR><BR></TD></TR></TBODY></TABLE>
+        name=agrees <?php if($onedit || !empty($agrees))echo 'checked';?>>同意以上陈述。<BR><BR></TD></TR></TBODY></TABLE>
       <TABLE border=0 cellSpacing=0 cellPadding=0 align=center>
         <TBODY>
         <TR>
@@ -358,9 +384,15 @@ TD {
             onclick='return Check();' 
             src="content/templates/images/register_28.png" type=image name=submit></TD>
           <TD width=80>&nbsp;</TD>
-          <TD><A id=reset href="?register"><IMG 
+          <TD>
+          <?php if($onedit):?>  
+          <A href="/work/register.php">返回</A>
+             <?php else:?>
+          <A id=reset href="?register"><IMG 
             alt="" src="content/templates/images/register_30.png" width=109 
-            height=35></A></TD>
+            height=35></A>
+         
+            <?php endif;?></TD>
             </TR>
             </TBODY></TABLE>
             </TD></TR>

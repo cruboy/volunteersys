@@ -67,6 +67,19 @@ class User_Model {
 		$this->db->query($sql);
 	}
 	
+	function editUser($userData, $uid) {
+		$Item = array();
+		$ltime=time();
+		foreach ($userData as $key => $data) {
+			if($key=="agrees")continue;
+			if($key=="submit_x")continue;
+			if($key=="submit_y")continue;
+			$Item[] = "$key='".addslashes(trim($data)) ."'";
+		}
+		$upStr = implode(',', $Item);
+		$this->db->query("update ".DB_PREFIX."user set $upStr,lastdate='$ltime'
+		 where uid=$uid");
+	}
 	function regUser($regDate) {
 		$PHPASS = new PasswordHash(8, true);
 		$newpass = $PHPASS->HashPassword(trim($regDate['password']));
